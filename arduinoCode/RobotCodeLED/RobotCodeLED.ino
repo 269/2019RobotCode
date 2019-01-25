@@ -9,20 +9,35 @@ CRGB leds[NUM_LEDS];
 
 void setup() { 
       Serial.begin(9600);
-      FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+      FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
+      leds[0] = CRGB::Black;\
+      FastLED.show();
 }
 void red(){
   leds[0] = CRGB::Red;
+      FastLED.show();
 }
 void blue(){
+  Serial.println("HEY THIS IS AN LED PROBLEM");
   leds[0] = CRGB::Blue;
+      FastLED.show();
 }
 void off(){
   leds[0] = CRGB::Black;
+      FastLED.show();
+}
+void green(){
+  leds[0] = CRGB::Green;
+      FastLED.show();
+}
+void pink(){
+  leds[0] = CRGB::Pink;
+      FastLED.show();
 }
 void handleComms(){
   if(Serial.available() > 0){
     String roboRio = Serial.readString();
+    Serial.println(roboRio);
     if(roboRio == "red"){
       red();
     }
@@ -35,6 +50,10 @@ void handleComms(){
     else if(roboRio == "off"){
       off();
     }
+    else if (roboRio == "pink"){
+      pink();
+    }
+    roboRio = "AHAAHAHHAHHA";
   }
 }
 void loop() { 
