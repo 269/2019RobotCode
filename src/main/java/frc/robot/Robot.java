@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.LedHandler;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -27,6 +28,7 @@ import edu.wpi.first.cameraserver.CameraServer;
  */
 public class Robot extends TimedRobot {
   public static Drive drive = new Drive();
+  public static LedHandler leds = new LedHandler();
   public static OI oi;
 
   Command m_autonomousCommand;
@@ -39,6 +41,15 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
+
+    leds.robotInit();
+
+
+    
+    //Temp code:
+    leds.sendData(1);
+
+    //End temp code
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(320, 240);
