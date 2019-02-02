@@ -40,7 +40,12 @@ public static final int LEFT_JOYSTICK_Y = 1;
 public static final int RIGHT_JOYSTICK_X = 4;
 public static final int RIGHT_JOYSTICK_Y = 5;
 
+public static final int RIGHT_BUMBPER = 6;
+public static final int LEFT_BUMBPER = 5;
 
-
+public static final int A_BUTTON = 1;
+public static final int B_BUTTON = 2;
+public static final int X_BUTTON = 3;
+public static final int Y_BUTTON = 4;
 
 }

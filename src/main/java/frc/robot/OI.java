@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,6 +49,12 @@ public class OI {
   public double getLeftJoystickX(Joystick joy){
     return joy.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
   }
+
+ // public JoystickButton rightBumbper = new JoystickButton(RobotMap.RIGHT_BUMBPER);
+
+  public JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
+  public JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
+
 
 }
 
