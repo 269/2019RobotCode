@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.driveTrain_subsystem;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,10 +24,29 @@ import frc.robot.subsystems.driveTrain_subsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static final boolean DEBUG = true;
   public static OI m_oi;
+  public static AHRS navx;
+  public boolean errStatus;
   public static driveTrain_subsystem driveTrain_subsystem = null;
 
-
+  public Robot(){
+    try{
+      navx = new AHRS(SPI.Port.kMXP);
+      System.out.println("it's trying its best fam");
+      errStatus = false;
+    } catch (RuntimeException ex ) {
+        System.out.println("Error instantiating navX-MXP:  " + ex.getMessage());
+        errStatus = true;
+    } finally {
+      if(errStatus == false){
+       System.out.println("I Connected all good");
+      }
+      else{
+        System.out.println("There was a problem dude");
+      }
+    }
+  }
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -40,7 +61,7 @@ public class Robot extends TimedRobot {
     
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
+    navx.zeroYaw();
   }
 
   /**
@@ -51,7 +72,7 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before
    * LiveWindow and SmartDashboard integrated updating.
    */
-  @Override
+  @Override 
   public void robotPeriodic() {
   }
 
@@ -121,7 +142,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    Scheduler.getInstance().run();
+    Scheduler.getInstance().run();    
+    System.out.println("Yaw : " + navx.getYaw());
   }
 
   /**
