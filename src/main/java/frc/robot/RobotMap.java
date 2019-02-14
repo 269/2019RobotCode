@@ -25,10 +25,6 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
 
-public static final int FRONT_LEFT_MOTOR = 3; //Good
-public static final int FRONT_RIGHT_MOTOR = 8; //Good
-public static final int REAR_LEFT_MOTOR = 7; //Good
-public static final int REAR_RIGHT_MOTOR = 6; //Good
 
 
 public static final int DRIVER_CONTROLLER = 0;
@@ -40,6 +36,13 @@ public static final int LEFT_JOYSTICK_Y = 1;
 public static final int RIGHT_JOYSTICK_X = 4;
 public static final int RIGHT_JOYSTICK_Y = 5;
 
+public static final int FRONT_LEFT_MOTOR = 3; //Good
+public static final int FRONT_RIGHT_MOTOR = 8; //Good
+public static final int REAR_LEFT_MOTOR = 7; //Good
+public static final int REAR_RIGHT_MOTOR = 6; //Good
+
+public static final int ELEVATOR_LEFT = 99; //made up numbers
+public static final int ELEVATOR_RIGHT = 88;
 
 
 
