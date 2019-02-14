@@ -29,7 +29,16 @@ public static final int FRONT_LEFT_MOTOR = 3; //Good
 public static final int FRONT_RIGHT_MOTOR = 8; //Good
 public static final int REAR_LEFT_MOTOR = 7; //Good
 public static final int REAR_RIGHT_MOTOR = 6; //Good
-
+public static final int LEFT_LIFT = 1;
+public static final int RIGHT_LIFT = 2;
+public static final int LEFT_REAR_INTAKE_ROTATION = 4;
+public static final int RIGHT_REAR_INTAKE_ROTATION = 5;
+public static final int SPIN_REAR_INTAKE = 9;
+public static final int SPIN_FRONT_INTAKE = 10;
+public static final int VACUUM_PUMP = 11;
+public static final int FRONT_INTAKE_ROTATE = 12;
+public static final int LEFT_LEADSCREW = 13;
+public static final int RIGHT_LEADSCREW = 14;
 
 public static final int DRIVER_CONTROLLER = 0;
 public static final int INTAKE_CONTROLLER = 1;
@@ -47,5 +56,7 @@ public static final int A_BUTTON = 1;
 public static final int B_BUTTON = 2;
 public static final int X_BUTTON = 3;
 public static final int Y_BUTTON = 4;
+
+//public static final int UP_BUTTON = 1;
 
 }

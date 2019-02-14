@@ -7,11 +7,14 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.PIDBase.Tolerance;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.driveTrain_subsystem;
+
 
 public class driveWithJoysticks_command extends Command {
   boolean toggleRightBumper = false;
@@ -21,7 +24,8 @@ public class driveWithJoysticks_command extends Command {
   int gear = 0;
   final int MAXGEAR = 3;
   final int MINGEAR = 0;
-  public driveWithJoysticks_command() {
+
+public driveWithJoysticks_command() {
     // Use requires() here to declare subsystem dependencies
      requires(Robot.driveTrain_subsystem);
   }
@@ -30,13 +34,13 @@ public class driveWithJoysticks_command extends Command {
   @Override
   protected void initialize() {
   }
-
-  // Called repeatedly when this Command is scheduled to run
+  
+  //Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     double Y_speed = Robot.m_oi.driverController.getRawAxis(RobotMap.LEFT_JOYSTICK_Y);
     double X_speed = -Robot.m_oi.getLeftJoystickX(Robot.m_oi.driverController);
-    double Z_rotatingSpeed = -Robot.m_oi.driverController.getRawAxis(RobotMap.RIGHT_JOYSTICK_X);
+    double Z_rotatingSpeed = Robot.m_oi.driverController.getRawAxis(RobotMap.RIGHT_JOYSTICK_X);
 
     double tolerance = 0.1;
    //X
@@ -104,8 +108,11 @@ public class driveWithJoysticks_command extends Command {
         }
       Robot.driveTrain_subsystem.drive(Y_speed, X_speed, Z_rotatingSpeed);
       System.out.println("x Speed: " + X_speed + "\nY Speed: " + Y_speed + "\n Z Speed: " + Z_rotatingSpeed);
-    }
 
+      if (Robot.m_oi.xButton.get() == true) {
+        Robot.navx.reset();
+    }
+  }
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {

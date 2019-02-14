@@ -14,7 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.driveTrain_subsystem;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.networktables.NetworkTable;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +32,7 @@ public class Robot extends TimedRobot {
   public static AHRS navx;
   public boolean errStatus;
   public static driveTrain_subsystem driveTrain_subsystem = null;
+  NetworkTableEntry targetValue;
 
   public Robot(){
     try{
@@ -62,6 +66,17 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     navx.zeroYaw();
+
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("pixieCamera");
+    targetValue = table.getEntry("targetXPOS");
+  }
+    
+  public static double getFullYaw() {
+    if(Robot.navx.getYaw() <= 0)
+      return -Robot.navx.getYaw();
+    else
+      return 360 - Robot.navx.getYaw();
   }
 
   /**
@@ -143,7 +158,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();    
-    System.out.println("Yaw : " + navx.getYaw());
+   // System.out.println("Compass head : " + navx.getCompassHeading());
+    System.out.println("Fused Heading : " + navx.getFusedHeading());
+  //  System.out.println("Yaw : " + getFullYaw());
+
+  System.out.println("Target Value: " + targetValue);
   }
 
   /**
@@ -152,4 +171,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }
