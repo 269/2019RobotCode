@@ -6,8 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
+import frc.robot.commands.RotateGyro;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,12 +45,30 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  public Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
-  public Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
+  public static Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
+  public static Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
   
-  public double getLeftJoystickX(Joystick joy){
-    return joy.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
-  }
+   public double getLeftJoystickX(Joystick joy){
+     return joy.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+   }
 
+ // public JoystickButton rightBumbper = new JoystickButton(RobotMap.RIGHT_BUMBPER);
+
+  public static JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
+  public static JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
+
+  public static JoystickButton xButton = new JoystickButton(driverController, RobotMap.X_BUTTON);
+  public static JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
+  public static JoystickButton yButton = new JoystickButton(driverController, RobotMap.Y_BUTTON);
+  public static JoystickButton aButton = new JoystickButton(driverController, RobotMap.A_BUTTON);
+  //public static POVButton upButton = new POVButton(driverController, angle, RobotMap.UP_BUTTON);
+
+public OI(){
+  OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
+  OI.bButton.whenPressed(new RotateGyro(0.65, 90));
 }
+
+        
+}
+
 
