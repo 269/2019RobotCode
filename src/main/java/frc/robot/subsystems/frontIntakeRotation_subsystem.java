@@ -7,43 +7,43 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.frontIntakeRollers;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
  * Add your docs here.
  */
-public class frontIntake_subsystem extends Subsystem {
+public class frontIntakeRotation_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_TalonSRX spinFrontIntake = null;
+  WPI_TalonSRX frontIntakeRotate = null;
 
-  public frontIntake_subsystem() {
+  public frontIntakeRotation_subsystem() {
 
-    spinFrontIntake = new WPI_TalonSRX(RobotMap.SPIN_FRONT_INTAKE);
- 
+  frontIntakeRotate = new WPI_TalonSRX(RobotMap.FRONT_INTAKE_ROTATE);
+
   }
-
   double tolerance = 0.1;
 
-  public void rollerSpeed( double rollerSpeed){
+  public void motorSpeed( double motorSpeed){
 
-    if(rollerSpeed >= -tolerance && rollerSpeed <= tolerance){
-      rollerSpeed = 0;
-      spinFrontIntake.set(0);
+    if(motorSpeed >= -tolerance && motorSpeed <= tolerance){
+      motorSpeed = 0;
+      frontIntakeRotate.set(0);
     }
     else{
-      spinFrontIntake.set(rollerSpeed);
+      frontIntakeRotate.set(motorSpeed);
     }
   }
+
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new frontIntakeRollers());
+    setDefaultCommand(new frontIntakeRotateCommand());
+
   }
 }
