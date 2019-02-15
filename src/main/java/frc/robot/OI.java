@@ -10,6 +10,7 @@ import frc.robot.commands.RotateGyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
@@ -48,8 +49,14 @@ public class OI {
   public static Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
   public static Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
   
-   public double getLeftJoystickX(Joystick joy){
-     return joy.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+   public double getLeftJoystickX(Joystick joy0){
+     return joy0.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+   }
+   public double getLeftTriggerAxis(Joystick joy1){
+    return joy1.getRawAxis(RobotMap.LEFT_TRIGGER);
+   }
+   public double getRightTriggerAxis(Joystick joy1){
+    return -1*joy1.getRawAxis(RobotMap.RIGHT_TRIGGER);
    }
 
  // public JoystickButton rightBumbper = new JoystickButton(RobotMap.RIGHT_BUMBPER);
@@ -63,12 +70,10 @@ public class OI {
   public static JoystickButton aButton = new JoystickButton(driverController, RobotMap.A_BUTTON);
   //public static POVButton upButton = new POVButton(driverController, angle, RobotMap.UP_BUTTON);
 
-public OI(){
-  OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
-  OI.bButton.whenPressed(new RotateGyro(0.65, 90));
-}
-
-        
+  public OI(){
+   OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
+   OI.bButton.whenPressed(new RotateGyro(0.65, 90));
+  }      
 }
 
 

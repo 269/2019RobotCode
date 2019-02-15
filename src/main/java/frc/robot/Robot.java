@@ -18,6 +18,8 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.networktables.NetworkTable;
+import frc.robot.subsystems.frontIntake_subsystem;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,6 +34,7 @@ public class Robot extends TimedRobot {
   public static AHRS navx;
   public boolean errStatus;
   public static driveTrain_subsystem driveTrain_subsystem = null;
+  public static frontIntake_subsystem frontIntake_subsystem = null;
   NetworkTableEntry targetValue;
 
   public Robot(){
