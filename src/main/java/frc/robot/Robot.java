@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
   public static AHRS navx;
   public boolean errStatus;
   public static driveTrain_subsystem driveTrain_subsystem = null;
-  public static frontIntake_subsystem frontIntake_subsystem = null;
+  public static frontIntake_subsystem frontIntake = null;
   NetworkTableEntry targetValue;
 
   public Robot(){
@@ -65,6 +65,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     driveTrain_subsystem = new driveTrain_subsystem();
+    frontIntake = new frontIntake_subsystem();
     
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

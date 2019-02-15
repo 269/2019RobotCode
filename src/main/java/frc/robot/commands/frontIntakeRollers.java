@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class frontIntakeWithJoysticks extends Command {
+public class frontIntakeRollers extends Command {
 
   double tolerance = 0.1;
 
-  public frontIntakeWithJoysticks() {
+  public frontIntakeRollers() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.frontIntake_subsystem);
+    requires(Robot.frontIntake);
 
   }
 
@@ -34,12 +34,8 @@ public class frontIntakeWithJoysticks extends Command {
     double rollerSpeedIn = Robot.m_oi.getLeftTriggerAxis(Robot.m_oi.intakeController);
     double rollerSpeedOut = Robot.m_oi.getRightTriggerAxis(Robot.m_oi.intakeController);
 
-    if(rollerSpeedIn >= -tolerance && rollerSpeedIn <= tolerance){
-      rollerSpeedIn = 0;
-    }
-    if(rollerSpeedOut >= -tolerance && rollerSpeedOut >= tolerance){
-      rollerSpeedOut = 0;
-    }
+    Robot.frontIntake.rollerSpeed(rollerSpeedIn);
+    Robot.frontIntake.rollerSpeed(rollerSpeedOut);
 
   }
 

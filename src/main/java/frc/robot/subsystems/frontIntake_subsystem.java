@@ -23,16 +23,19 @@ public class frontIntake_subsystem extends Subsystem {
   public frontIntake_subsystem() {
 
     spinFrontIntake = new WPI_TalonSRX(RobotMap.SPIN_FRONT_INTAKE);
-    Robot.frontIntake_subsystem.rollerSpeed(spinFrontIntake);
+ 
   }
 
-  //double tolerance = 0.1;
+  double tolerance = 0.1;
 
- /* public void rotation(double speed){//moving the elevator up or down depending on the speed (positive or negative)
+  public void rollerSpeed( double rollerSpeed){
 
-    if( )
+    if(rollerSpeed <= tolerance){
+      rollerSpeed = 0;
+    }
+
   }
-*/
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
