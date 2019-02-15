@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.frontIntakeRollers;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -30,15 +32,19 @@ public class frontIntake_subsystem extends Subsystem {
 
   public void rollerSpeed( double rollerSpeed){
 
-    if(rollerSpeed <= tolerance){
+    if(rollerSpeed >= -tolerance && rollerSpeed <= tolerance){
       rollerSpeed = 0;
+      spinFrontIntake.set(0);
     }
-
+    else{
+      spinFrontIntake.set(rollerSpeed);
+    }
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new frontIntakeRollers());
   }
 }
