@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevatorManualLift;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -47,7 +46,7 @@ if(speed <= -0.1 && !bottomLimit){ //move down
   }else{
   elevatorLeft.set(0);
   elevatorRight.set(0);
-} 
+  } 
 
 //WE HAVEN'T PROGRAMMED ENCODERS YET, GOTTA DO THAT!!!
 
