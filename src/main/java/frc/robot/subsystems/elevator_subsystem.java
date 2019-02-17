@@ -23,8 +23,8 @@ public class elevator_subsystem extends Subsystem {
   WPI_TalonSRX elevatorRight = null; 
 
 public elevator_subsystem(){
-elevatorRight = new WPI_TalonSRX(RobotMap.ELEVATOR_RIGHT);
-elevatorLeft = new WPI_TalonSRX(RobotMap.ELEVATOR_LEFT);
+elevatorRight = new WPI_TalonSRX(RobotMap.RIGHT_ELEVATOR);
+elevatorLeft = new WPI_TalonSRX(RobotMap.LEFT_ELEVATOR);
 }
 
 boolean bottomLimit = false;
