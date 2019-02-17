@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.driveTrain_subsystem;
+import frc.robot.subsystems.elevator_subsystem;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -20,7 +21,6 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.subsystems.frontIntake_subsystem;
 import frc.robot.subsystems.frontIntakeRotation_subsystem;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
   public static AHRS navx;
   public boolean errStatus;
   public static driveTrain_subsystem driveTrain_subsystem = null;
+  public static elevator_subsystem elevator = null;
   public static frontIntake_subsystem frontIntake = null;
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
   NetworkTableEntry targetValue;
@@ -56,6 +57,7 @@ public class Robot extends TimedRobot {
       }
     }
   }
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -67,9 +69,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     driveTrain_subsystem = new driveTrain_subsystem();
+    elevator = new elevator_subsystem();
     frontIntake = new frontIntake_subsystem();
     frontIntakeRotation = new frontIntakeRotation_subsystem();
-    
+
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     navx.zeroYaw();
