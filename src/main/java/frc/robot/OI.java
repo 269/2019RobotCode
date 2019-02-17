@@ -46,21 +46,35 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
+  //declarations
+    //none at the momment
+
+  public OI(){
+    OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
+    OI.bButton.whenPressed(new RotateGyro(0.65, 90));
+    //OI.upButton.whenPressed(new TurnToAngle(0.35, 0));
+    //OI.rightButton.whenPressed(new TurnToAngle(0.35, 90));
+    //OI.downButton.whenPressed(new TurnToAngle(0.35, 180));
+    //OI.leftButton.whenPressed(new TurnToAngle(0.35, 270));
+
+  }   
+
+  //methods  
+  public double getLeftJoystickX(Joystick joy){       //gets the left joysticks corrected x axis
+    return joy.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+  }
+  public double getLeftTriggerAxis(Joystick joy){      //gets the left triggers corrected axis
+    return joy.getRawAxis(RobotMap.LEFT_TRIGGER);
+  }
+  public double getRightTriggerAxis(Joystick joy){     //gets the right triggers corrected axis (inverted)
+    return -1*joy.getRawAxis(RobotMap.RIGHT_TRIGGER);
+  }
+
+  //creating controllers NOTE: in wpilib joystick = controller
   public static Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
   public static Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
-  
-   public double getLeftJoystickX(Joystick joy0){
-     return joy0.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
-   }
-   public double getLeftTriggerAxis(Joystick joy1){
-    return joy1.getRawAxis(RobotMap.LEFT_TRIGGER);
-   }
-   public double getRightTriggerAxis(Joystick joy1){
-    return -1*joy1.getRawAxis(RobotMap.RIGHT_TRIGGER);
-   }
 
- // public JoystickButton rightBumbper = new JoystickButton(RobotMap.RIGHT_BUMBPER);
-
+  //creating buttons
   public static JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
   public static JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
 
@@ -68,17 +82,22 @@ public class OI {
   public static JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
   public static JoystickButton yButton = new JoystickButton(driverController, RobotMap.Y_BUTTON);
   public static JoystickButton aButton = new JoystickButton(driverController, RobotMap.A_BUTTON);
-  //public static POVButton upButton = new POVButton(driverController, angle, RobotMap.UP_BUTTON);
 
   public static JoystickButton xButton1 = new JoystickButton(intakeController, RobotMap.X_BUTTON);
   public static JoystickButton bButton1 = new JoystickButton(intakeController, RobotMap.B_BUTTON);
   public static JoystickButton yButton1 = new JoystickButton(intakeController, RobotMap.Y_BUTTON);
   public static JoystickButton aButton1 = new JoystickButton(intakeController, RobotMap.A_BUTTON);
 
-  public OI(){
-   OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
-   OI.bButton.whenPressed(new RotateGyro(0.65, 90));
-  }      
+  public static POVButton upButton = new POVButton(driverController, 0, RobotMap.UP_BUTTON);
+  public static POVButton rightButton = new POVButton(driverController, 90, RobotMap.RIGHT_BUTTON);
+  public static POVButton downButton = new POVButton(driverController, 180, RobotMap.DOWN_BUTTON);
+  public static POVButton leftButton = new POVButton(driverController, 270, RobotMap.LEFT_BUTTON);
+
+  public static POVButton upButton1 = new POVButton(intakeController, 0, RobotMap.UP_BUTTON);
+  public static POVButton rightButton1 = new POVButton(intakeController, 90, RobotMap.RIGHT_BUTTON);
+  public static POVButton downButton1 = new POVButton(intakeController, 180, RobotMap.DOWN_BUTTON);
+  public static POVButton leftButton1 = new POVButton(intakeController, 270, RobotMap.LEFT_BUTTON);
+
 }
 
 
