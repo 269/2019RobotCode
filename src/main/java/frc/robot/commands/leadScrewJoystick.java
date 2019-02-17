@@ -26,11 +26,8 @@ public class leadScrewJoystick extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   
-    //boolean leftLift = 
-   // double rightLift = Robot.m_oi.getLeftTriggerAxis(Robot.m_oi.intakeController);
 
-    if (Robot.m_oi.xButton1.get() == true) {
+    if (Robot.m_oi.xButton.get() == true) {
       Robot.leadScrews.motorSpeed(1);
     } else{
       Robot.leadScrews.motorSpeed(0);
