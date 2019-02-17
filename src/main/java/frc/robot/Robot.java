@@ -32,10 +32,13 @@ import frc.robot.subsystems.leadScrew_subsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static final boolean DEBUG = true;
+  public static final boolean DEBUG = true;  //turns on certian debugable console outputs
   public static OI m_oi;
-  public static AHRS navx;
-  public boolean errStatus;
+  public static AHRS navx;  //the kauailabs navx navigation sensor
+  public static boolean errStatus; //stores error status of navx initalization
+  public static NetworkTableEntry targetValue; //idk something to do with getting pixycam traget value
+
+  //declare subsystems
   public static driveTrain_subsystem driveTrain_subsystem = null;
   public static rearIntakeRotation_subsystem rearIntakeRotation = null;
   public static elevator_subsystem elevator = null;
@@ -43,9 +46,9 @@ public class Robot extends TimedRobot {
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
   public static leadScrew_subsystem leadScrews = null;
 
-  NetworkTableEntry targetValue;
-
   public Robot(){
+
+    //initalize navx over roborio MXP SPI port
     try{
       navx = new AHRS(SPI.Port.kMXP);
       System.out.println("it's trying its best fam");
@@ -53,16 +56,11 @@ public class Robot extends TimedRobot {
     } catch (RuntimeException ex ) {
         System.out.println("Error instantiating navX-MXP:  " + ex.getMessage());
         errStatus = true;
-    } finally {
-      if(errStatus == false){
-       System.out.println("I Connected all good");
-      }
-      else{
-        System.out.println("There was a problem dude");
-      }
     }
+    //add code to check error status and determin if there was an error     
   }
 
+  //gets auto mode from dashboard
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -72,6 +70,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //calling our subystems to run
     m_oi = new OI();
     driveTrain_subsystem = new driveTrain_subsystem();
     rearIntakeRotation = new rearIntakeRotation_subsystem();
