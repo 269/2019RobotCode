@@ -55,11 +55,13 @@ public class VacuumButtons extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.vacuum.vacuumSucktion(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
