@@ -33,10 +33,10 @@ import frc.robot.subsystems.leadScrew_subsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static final boolean DEBUG = true;  //turns on certian debugable console outputs
-  public static OI m_oi;
-  public static AHRS navx;  //the kauailabs navx navigation sensor
-  public static boolean errStatus; //stores error status of navx initalization
+  public static final boolean DEBUG = true;    //turns on certian debugable console outputs
+  public static OI m_oi;                       
+  public static AHRS navx;                     //the kauailabs navx navigation sensor
+  public static boolean errStatus;               //stores error status of navx initalization
   public static NetworkTableEntry targetValue; //idk something to do with getting pixycam traget value
 
   //declare subsystems
@@ -82,15 +82,20 @@ public class Robot extends TimedRobot {
     vacuum = new Vacuum_subsystem();
     leadScrews = new leadScrew_subsystem();
 
+    //adds options of commands to run to smart dashboard for auto modes
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    navx.zeroYaw();
 
+    //get pixie camera target x pos of vision tape
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("pixieCamera");
-    targetValue = table.getEntry("targetXPOS");
+    targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
   }
-    
+   
+  /**
+   * 
+   * @return returns 360 Yaw vs the 180 to -180
+   */
   public static double getFullYaw() {
     if(Robot.navx.getYaw() <= 0)
       return -Robot.navx.getYaw();
@@ -137,6 +142,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    //add code to reset the fusedHeading and add delay so it finishes resetting
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -166,6 +172,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    //only reset fusedheading if not already reset from autoinit
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -176,12 +183,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    Scheduler.getInstance().run();    
-   // System.out.println("Compass head : " + navx.getCompassHeading());
-    System.out.println("Fused Heading : " + navx.getFusedHeading());
-  //  System.out.println("Yaw : " + getFullYaw());
-
-  System.out.println("Target Value: " + targetValue);
+    Scheduler.getInstance().run();
+    
+    if(DEBUG){
+      // System.out.println("Compass head : " + navx.getCompassHeading());
+      System.out.println("Fused Heading : " + navx.getFusedHeading());
+      //System.out.println("Yaw : " + getFullYaw());
+      System.out.println("Target Value: " + targetValue);
+    }
   }
 
   /**
