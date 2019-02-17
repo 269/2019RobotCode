@@ -8,9 +8,9 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.driveWithJoysticks_command;
 
@@ -42,12 +42,10 @@ MecanumDrive mecDrive = null;
     mecDrive = new MecanumDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
     rearLeftMotor.setInverted(false);
     frontLeftMotor.setInverted(false);
-
-
     
   }
 
   public void drive(double yspeed, double xspeed, double zspeed ){
-    mecDrive.driveCartesian(xspeed, yspeed, zspeed, 0.0);
+    mecDrive.driveCartesian(xspeed, yspeed, -zspeed, Robot.navx.getFusedHeading());
   }
 }

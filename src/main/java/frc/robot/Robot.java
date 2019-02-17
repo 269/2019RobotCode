@@ -14,6 +14,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.driveTrain_subsystem;
 import frc.robot.subsystems.elevator_subsystem;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.networktables.NetworkTable;
+import frc.robot.subsystems.frontIntake_subsystem;
+import frc.robot.subsystems.frontIntakeRotation_subsystem;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -22,9 +30,33 @@ import frc.robot.subsystems.elevator_subsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static final boolean DEBUG = true;
   public static OI m_oi;
+  public static AHRS navx;
+  public boolean errStatus;
   public static driveTrain_subsystem driveTrain_subsystem = null;
   public static elevator_subsystem elevator = null;
+  public static frontIntake_subsystem frontIntake = null;
+  public static frontIntakeRotation_subsystem frontIntakeRotation = null;
+  NetworkTableEntry targetValue;
+
+  public Robot(){
+    try{
+      navx = new AHRS(SPI.Port.kMXP);
+      System.out.println("it's trying its best fam");
+      errStatus = false;
+    } catch (RuntimeException ex ) {
+        System.out.println("Error instantiating navX-MXP:  " + ex.getMessage());
+        errStatus = true;
+    } finally {
+      if(errStatus == false){
+       System.out.println("I Connected all good");
+      }
+      else{
+        System.out.println("There was a problem dude");
+      }
+    }
+  }
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -38,9 +70,23 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     driveTrain_subsystem = new driveTrain_subsystem();
     elevator = new elevator_subsystem();
+    frontIntake = new frontIntake_subsystem();
+    frontIntakeRotation = new frontIntakeRotation_subsystem();
+
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    navx.zeroYaw();
 
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("pixieCamera");
+    targetValue = table.getEntry("targetXPOS");
+  }
+    
+  public static double getFullYaw() {
+    if(Robot.navx.getYaw() <= 0)
+      return -Robot.navx.getYaw();
+    else
+      return 360 - Robot.navx.getYaw();
   }
 
   /**
@@ -51,7 +97,7 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before
    * LiveWindow and SmartDashboard integrated updating.
    */
-  @Override
+  @Override 
   public void robotPeriodic() {
   }
 
@@ -121,7 +167,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    Scheduler.getInstance().run();
+    Scheduler.getInstance().run();    
+   // System.out.println("Compass head : " + navx.getCompassHeading());
+    System.out.println("Fused Heading : " + navx.getFusedHeading());
+  //  System.out.println("Yaw : " + getFullYaw());
+
+  System.out.println("Target Value: " + targetValue);
   }
 
   /**
@@ -130,4 +181,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }

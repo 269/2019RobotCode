@@ -25,25 +25,39 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
 
+public static final int FRONT_LEFT_MOTOR = 3; //Good
+public static final int FRONT_RIGHT_MOTOR = 8; //Good
+public static final int REAR_LEFT_MOTOR = 7; //Good
+public static final int REAR_RIGHT_MOTOR = 6; //Good
+public static final int LEFT_ELEVATOR = 1;
+public static final int RIGHT_ELEVATOR = 2;
+public static final int LEFT_REAR_INTAKE_ROTATION = 4;
+public static final int RIGHT_REAR_INTAKE_ROTATION = 5;
+public static final int SPIN_REAR_INTAKE = 9;
+public static final int SPIN_FRONT_INTAKE = 10;
+public static final int VACUUM_PUMP = 11;
+public static final int FRONT_INTAKE_ROTATE = 12;
+public static final int LEFT_LEADSCREW = 13;
+public static final int RIGHT_LEADSCREW = 14;
 
+public static final int DRIVER_CONTROLLER = 0; //good
+public static final int INTAKE_CONTROLLER = 1;// good
 
-public static final int DRIVER_CONTROLLER = 0;
-public static final int INTAKE_CONTROLLER = 1;
-
-public static final int LEFT_JOYSTICK_X = 0;
+public static final int LEFT_JOYSTICK_X = 0; // good
 public static final int LEFT_JOYSTICK_Y = 1;
 
 public static final int RIGHT_JOYSTICK_X = 4;
 public static final int RIGHT_JOYSTICK_Y = 5;
 
-public static final int FRONT_LEFT_MOTOR = 3; //Good
-public static final int FRONT_RIGHT_MOTOR = 8; //Good
-public static final int REAR_LEFT_MOTOR = 7; //Good
-public static final int REAR_RIGHT_MOTOR = 6; //Good
+public static final int RIGHT_BUMBPER = 6;
+public static final int LEFT_BUMBPER = 5;
 
-public static final int ELEVATOR_LEFT = 99; //made up numbers
-public static final int ELEVATOR_RIGHT = 88;
+public static final int A_BUTTON = 1;// good
+public static final int B_BUTTON = 2;// good
+public static final int X_BUTTON = 3;// good
+public static final int Y_BUTTON = 4;// good
 
-
+public static final int LEFT_TRIGGER = 2;
+public static final int RIGHT_TRIGGER = 3;
 
 }
