@@ -60,14 +60,29 @@ public class OI {
   }   
 
   //methods  
-  public double getLeftJoystickX(Joystick joy){       //gets the left joysticks corrected x axis
-    return joy.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+  /**
+   * 
+   * @param controller the USB controller you want 
+   * @return  returns the x axis left joystick (-1.0 - 1.0)
+   */
+  public double getLeftJoystickX(Joystick controller){       //gets the left joysticks corrected x axis
+    return controller.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
   }
-  public double getLeftTriggerAxis(Joystick joy){      //gets the left triggers corrected axis
-    return joy.getRawAxis(RobotMap.LEFT_TRIGGER);
+/**
+ * 
+ * @param controller the USB controller you want
+ * @return returns the left trigger (0.0 to 1.0)
+ */
+  public double getLeftTriggerAxis(Joystick controller){      //gets the left triggers corrected axis
+    return controller.getRawAxis(RobotMap.LEFT_TRIGGER);
   }
-  public double getRightTriggerAxis(Joystick joy){     //gets the right triggers corrected axis (inverted)
-    return -1*joy.getRawAxis(RobotMap.RIGHT_TRIGGER);
+  /**
+   * 
+   * @param controller the USB controller you want
+   * @return returns the right trigger (0.0 to -1.0)
+   */
+  public double getRightTriggerAxis(Joystick controller){     //gets the right triggers corrected axis (inverted)
+    return -1*controller.getRawAxis(RobotMap.RIGHT_TRIGGER);
   }
 
   //creating controllers NOTE: in wpilib joystick = controller
