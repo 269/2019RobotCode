@@ -15,17 +15,18 @@ import frc.robot.RobotMap;
 import frc.robot.commands.driveWithJoysticks_command;
 
 /**
- * Add your docs here.
+ * This subsystem makes the robot drive field oriented for 4 wheels
+ * mecanumdrive
  */
 public class driveTrain_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-WPI_TalonSRX frontRightMotor = null;
-WPI_TalonSRX frontLeftMotor = null;
-WPI_TalonSRX rearRightMotor = null;
-WPI_TalonSRX rearLeftMotor = null;
-MecanumDrive mecDrive = null;
+  WPI_TalonSRX frontRightMotor = null;
+  WPI_TalonSRX frontLeftMotor = null;
+  WPI_TalonSRX rearRightMotor = null;
+  WPI_TalonSRX rearLeftMotor = null;
+  MecanumDrive mecDrive = null;
 
   @Override
   public void initDefaultCommand() {
@@ -44,7 +45,12 @@ MecanumDrive mecDrive = null;
     frontLeftMotor.setInverted(false);
     
   }
-
+  /**
+   * 
+   * @param yspeed the motor speed for y axis (-1.0 to 1.0)
+   * @param xspeed the motor speed for x axis (-1.0 to 1.0)
+   * @param zspeed the rotation motor speed on x axis (-1.0 to 1.0)
+   */
   public void drive(double yspeed, double xspeed, double zspeed ){
     mecDrive.driveCartesian(xspeed, yspeed, -zspeed, Robot.navx.getFusedHeading());
   }

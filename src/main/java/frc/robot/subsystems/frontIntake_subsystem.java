@@ -14,7 +14,7 @@ import frc.robot.commands.frontIntakeRollers;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
- * Add your docs here.
+ * This makes the rollers spin for front Intake
  */
 public class frontIntake_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -28,11 +28,12 @@ public class frontIntake_subsystem extends Subsystem {
   }
 
   double tolerance = 0.1;
-
+/**
+ * 
+ * @param rollerSpeed the speed of the motors (-1.0 to 1.0)
+ */
   public void rollerSpeed( double rollerSpeed){
-
     if(rollerSpeed >= -tolerance && rollerSpeed <= tolerance){
-      rollerSpeed = 0;
       spinFrontIntake.set(0);
     }
     else{

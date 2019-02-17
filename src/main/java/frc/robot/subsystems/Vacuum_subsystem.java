@@ -14,7 +14,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.VacuumButtons;
 /**
- * Add your docs here.
+ * mechanism for picking up hatch panels 
  */
 public class Vacuum_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -24,7 +24,10 @@ public class Vacuum_subsystem extends Subsystem {
   public Vacuum_subsystem(){
     vacuum = new Relay(RobotMap.VACUUM_PUMP, Direction.kForward);
   }
-
+/**
+ * 
+ * @param vacuumSuck on or off from command
+ */
   public void vacuumSucktion(boolean vacuumSuck){
     if(vacuumSuck == true){
       vacuum.set(Relay.Value.kOn);

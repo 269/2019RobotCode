@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * controls the lead screws going up and down
  */
 public class leadScrew_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -29,10 +29,12 @@ public class leadScrew_subsystem extends Subsystem {
   }
 
   double tolerance = 0.1;
-
+/**
+ * 
+ * @param motorSpeed the motor speed of the lead screws (-1.0 to 1.0)
+ */
   public void motorSpeed( double motorSpeed){
     if(motorSpeed >= -tolerance && motorSpeed < tolerance){
-      motorSpeed = 0;
       leftLeadScrew.set(0);
       rightLeadScrew.set(0);
     }
