@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.subsystems.frontIntake_subsystem;
 import frc.robot.subsystems.frontIntakeRotation_subsystem;
+import frc.robot.subsystems.leadScrew_subsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -40,6 +41,7 @@ public class Robot extends TimedRobot {
   public static elevator_subsystem elevator = null;
   public static frontIntake_subsystem frontIntake = null;
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
+  public static leadScrew_subsystem leadScrews = null;
 
   NetworkTableEntry targetValue;
 
@@ -76,6 +78,7 @@ public class Robot extends TimedRobot {
     elevator = new elevator_subsystem();
     frontIntake = new frontIntake_subsystem();
     frontIntakeRotation = new frontIntakeRotation_subsystem();
+    leadScrews = new leadScrew_subsystem();
 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
