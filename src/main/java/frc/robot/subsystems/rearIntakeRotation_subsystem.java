@@ -35,17 +35,17 @@ boolean topLimit = false;
 
 /**
  * 
- * @param speed 0.0 to -1.0 moves elevator down & 0.0to 1.0 moves elevator up
+ * @param speed rotates the rear intake motors at speed -1 to 1
  */
 public void rotate(double speed){//rotating the rear intake up or down depending on the speed (negative or positive)
   if(speed <= -0.1 && !bottomLimit){ //move down
       //stops motors rotating to far based on encoders
       rearIntakeRightRotation.set(speed);
-      rearIntakeLeftRotation.set(speed);
+      rearIntakeLeftRotation.set(-speed);
   }else if(speed >= 0.1 && !topLimit ){//move up
    //stops motors from rotating too far based on encoders
       rearIntakeRightRotation.set(speed);
-      rearIntakeLeftRotation.set(speed);
+      rearIntakeLeftRotation.set(-speed);
     }else{
     rearIntakeRightRotation.set(0);
     rearIntakeLeftRotation.set(0);}
