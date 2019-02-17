@@ -70,6 +70,11 @@ public class OI {
   public static JoystickButton aButton = new JoystickButton(driverController, RobotMap.A_BUTTON);
   //public static POVButton upButton = new POVButton(driverController, angle, RobotMap.UP_BUTTON);
 
+  public static JoystickButton xButton1 = new JoystickButton(intakeController, RobotMap.X_BUTTON);
+  public static JoystickButton bButton1 = new JoystickButton(intakeController, RobotMap.B_BUTTON);
+  public static JoystickButton yButton1 = new JoystickButton(intakeController, RobotMap.Y_BUTTON);
+  public static JoystickButton aButton1 = new JoystickButton(intakeController, RobotMap.A_BUTTON);
+
   public OI(){
    OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
    OI.bButton.whenPressed(new RotateGyro(0.65, 90));
