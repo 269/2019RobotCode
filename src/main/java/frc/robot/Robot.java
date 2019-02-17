@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.subsystems.frontIntake_subsystem;
 import frc.robot.subsystems.frontIntakeRotation_subsystem;
+import frc.robot.subsystems.Vacuum_subsystem;
 
 
 /**
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
   public static driveTrain_subsystem driveTrain_subsystem = null;
   public static frontIntake_subsystem frontIntake = null;
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
+  public static Vacuum_subsystem vacuum = null;
   NetworkTableEntry targetValue;
 
   public Robot(){
@@ -69,6 +71,7 @@ public class Robot extends TimedRobot {
     driveTrain_subsystem = new driveTrain_subsystem();
     frontIntake = new frontIntake_subsystem();
     frontIntakeRotation = new frontIntakeRotation_subsystem();
+    vacuum = new Vacuum_subsystem();
     
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
