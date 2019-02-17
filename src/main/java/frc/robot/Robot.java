@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.subsystems.frontIntake_subsystem;
 import frc.robot.subsystems.frontIntakeRotation_subsystem;
+import frc.robot.subsystems.Vacuum_subsystem;
 import frc.robot.subsystems.leadScrew_subsystem;
 
 /**
@@ -41,8 +42,8 @@ public class Robot extends TimedRobot {
   public static elevator_subsystem elevator = null;
   public static frontIntake_subsystem frontIntake = null;
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
+  public static Vacuum_subsystem vacuum = null;
   public static leadScrew_subsystem leadScrews = null;
-
   NetworkTableEntry targetValue;
 
   public Robot(){
@@ -78,6 +79,7 @@ public class Robot extends TimedRobot {
     elevator = new elevator_subsystem();
     frontIntake = new frontIntake_subsystem();
     frontIntakeRotation = new frontIntakeRotation_subsystem();
+    vacuum = new Vacuum_subsystem();
     leadScrews = new leadScrew_subsystem();
 
     // chooser.addOption("My Auto", new MyAutoCommand());
