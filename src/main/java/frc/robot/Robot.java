@@ -14,12 +14,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.driveTrain_subsystem;
 import frc.robot.subsystems.rearIntakeRotation_subsystem;
-
+import frc.robot.subsystems.elevator_subsystem;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.networktables.NetworkTable;
+import frc.robot.subsystems.frontIntake_subsystem;
+import frc.robot.subsystems.frontIntakeRotation_subsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,12 +31,15 @@ import edu.wpi.first.networktables.NetworkTable;
  * project.
  */
 public class Robot extends TimedRobot {
-public static final boolean DEBUG = true;
-public static OI m_oi;
-public static AHRS navx;
-public boolean errStatus;
-public static driveTrain_subsystem driveTrain_subsystem = null;
-public static rearIntakeRotation_subsystem rearIntakeRotation = null;
+  public static final boolean DEBUG = true;
+  public static OI m_oi;
+  public static AHRS navx;
+  public boolean errStatus;
+  public static driveTrain_subsystem driveTrain_subsystem = null;
+  public static rearIntakeRotation_subsystem rearIntakeRotation = null;
+  public static elevator_subsystem elevator = null;
+  public static frontIntake_subsystem frontIntake = null;
+  public static frontIntakeRotation_subsystem frontIntakeRotation = null;
 
   NetworkTableEntry targetValue;
 
@@ -55,6 +60,7 @@ public static rearIntakeRotation_subsystem rearIntakeRotation = null;
       }
     }
   }
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -67,6 +73,9 @@ public static rearIntakeRotation_subsystem rearIntakeRotation = null;
     m_oi = new OI();
     driveTrain_subsystem = new driveTrain_subsystem();
     rearIntakeRotation = new rearIntakeRotation_subsystem();
+    elevator = new elevator_subsystem();
+    frontIntake = new frontIntake_subsystem();
+    frontIntakeRotation = new frontIntakeRotation_subsystem();
 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
