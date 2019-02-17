@@ -29,6 +29,7 @@ public static final int FRONT_LEFT_MOTOR = 3; //Good
 public static final int FRONT_RIGHT_MOTOR = 8; //Good
 public static final int REAR_LEFT_MOTOR = 7; //Good
 public static final int REAR_RIGHT_MOTOR = 6; //Good
+
 public static final int LEFT_ELEVATOR = 1;
 public static final int RIGHT_ELEVATOR = 2;
 public static final int LEFT_REAR_INTAKE_ROTATION = 4;
@@ -56,7 +57,7 @@ public static final int A_BUTTON = 1;// good
 public static final int B_BUTTON = 2;// good
 public static final int X_BUTTON = 3;// good
 public static final int Y_BUTTON = 4;// good
-
+//public static final int UP_BUTTON = 1;
 public static final int LEFT_TRIGGER = 2;
 public static final int RIGHT_TRIGGER = 3;
 
