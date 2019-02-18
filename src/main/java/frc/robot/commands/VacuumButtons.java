@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.Vacuum_subsystem;
-
+/**
+ * @command turns hatch panel vacume on and off when a buton is pressed
+ */
 public class VacuumButtons extends Command {
   boolean toggleRightBumper = false;
   boolean releasedRightBumper = false;
@@ -32,7 +34,8 @@ public class VacuumButtons extends Command {
   @Override
   protected void execute() {
 
-    if (Robot.m_oi.rightBumbper.get() == true) {
+    //toggle the vacuum on and off on button release
+    if (Robot.m_oi.rightBumbper.get() == true) { 
       releasedRightBumper = false;
       Robot.vacuum.vacuumSucktion(true);
     } 
@@ -42,8 +45,7 @@ public class VacuumButtons extends Command {
           releasedRightBumper = true;
           Robot.vacuum.vacuumSucktion(false);
       }
-    }
-    
+    }    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -55,7 +57,7 @@ public class VacuumButtons extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.vacuum.vacuumSucktion(false);
+    Robot.vacuum.vacuumSucktion(false);  //do you really want to stop the vacuum when the commands interupted???
   }
 
   // Called when another command which requires one or more of the same

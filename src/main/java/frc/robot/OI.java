@@ -92,6 +92,8 @@ public class OI {
   //creating buttons
   public static JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
   public static JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
+  public static JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);
+  public static JoystickButton leftBumbper1 = new JoystickButton(intakeController, RobotMap.LEFT_BUMBPER);
 
   public static JoystickButton xButton = new JoystickButton(driverController, RobotMap.X_BUTTON);
   public static JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
