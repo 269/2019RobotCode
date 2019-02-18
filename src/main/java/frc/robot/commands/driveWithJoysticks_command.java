@@ -15,7 +15,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.driveTrain_subsystem;
 
-
+//Driving With Joysticks and such
 public class driveWithJoysticks_command extends Command {
   boolean toggleRightBumper = false;
   boolean toggleLeftBumper = false;
@@ -36,6 +36,7 @@ public driveWithJoysticks_command() {
   }
   
   //Called repeatedly when this Command is scheduled to run
+  //Gets Values of Joysticks
   @Override
   protected void execute() {
     double Y_speed = Robot.m_oi.driverController.getRawAxis(RobotMap.LEFT_JOYSTICK_Y);

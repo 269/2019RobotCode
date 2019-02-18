@@ -10,7 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-
+//More intake commands
 public class frontIntakeRotateCommand extends Command {
   public frontIntakeRotateCommand() {
     // Use requires() here to declare subsystem dependencies

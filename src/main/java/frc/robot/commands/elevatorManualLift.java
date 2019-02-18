@@ -12,6 +12,8 @@ import frc.robot.Robot;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 
+//Command for Running Elevator commands in subsys
+
 public class elevatorManualLift extends Command {
   public elevatorManualLift() {
     requires(Robot.elevator);
