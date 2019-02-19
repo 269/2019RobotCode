@@ -50,8 +50,7 @@ public class VacuumButtons extends Command {
     else{
       Robot.vacuum.vacuumSucktion(false); 
     }
-  }
-}    
+  }  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
