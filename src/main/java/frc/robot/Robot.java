@@ -24,6 +24,7 @@ import frc.robot.subsystems.frontIntake_subsystem;
 import frc.robot.subsystems.frontIntakeRotation_subsystem;
 import frc.robot.subsystems.Vacuum_subsystem;
 import frc.robot.subsystems.leadScrew_subsystem;
+import frc.robot.subsystems.rearIntakeRollers_subsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,6 +46,8 @@ public class Robot extends TimedRobot {
   public static elevator_subsystem elevator = null;
   public static frontIntake_subsystem frontIntake = null;
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
+  public static rearIntakeRollers_subsystem rearIntakeRollers_subsystem = null;
+
   public static Vacuum_subsystem vacuum = null;
   public static leadScrew_subsystem leadScrews = null;
 
@@ -75,6 +78,7 @@ public class Robot extends TimedRobot {
     //calling our subystems to run
     m_oi = new OI();
     driveTrain_subsystem = new driveTrain_subsystem();
+    rearIntakeRollers_subsystem = new rearIntakeRollers_subsystem();
     rearIntakeRotation = new rearIntakeRotation_subsystem();
     elevator = new elevator_subsystem();
     frontIntake = new frontIntake_subsystem();
