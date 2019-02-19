@@ -7,48 +7,46 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.VacuumButtons;
+import frc.robot.commands.rearIntakeRollers;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 /**
- * mechanism for picking up hatch panels 
+ * Add your docs here.
  */
-public class Vacuum_subsystem extends Subsystem {
+public class rearIntakeRollers_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  //Relay vacuum = null;
-  WPI_TalonSRX vacuum = null;
+  WPI_TalonSRX spinRearIntake = null;
+  
+public rearIntakeRollers_subsystem(){
 
-  public Vacuum_subsystem(){
-    //vacuum = new Relay(RobotMap.VACUUM_PUMP, Direction.kForward);
-    vacuum = new WPI_TalonSRX(RobotMap.VACUUM_PUMP);
-  }
+ spinRearIntake = new WPI_TalonSRX(RobotMap.SPIN_REAR_INTAKE);
+
+}
+
+double tolerance = 0.1;
 /**
  * 
- * @param vacuumSuck on or off from command
+ * @param rollerSpeed the speed of the motors (-1.0 to 1.0)
  */
-  public void vacuumSucktion(boolean vacuumSuck){
-   /* if(vacuumSuck == true){
-      vacuum.set(Relay.Value.kOn);
-    }
-    else{
-      vacuum.set(Relay.Value.kOff);
-    }
-    */
-    if(vacuumSuck  == true){
-      vacuum.set(0.35);
-    } else{
-      vacuum.set(0.0);
-    }
+public void rollerSpeed( double rollerSpeed){
+  if(rollerSpeed >= -tolerance && rollerSpeed <= tolerance){
+    spinRearIntake.set(0);
   }
+  else{
+    spinRearIntake.set(rollerSpeed);
+  }
+}
+
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new VacuumButtons());
+    setDefaultCommand(new rearIntakeRollers());
+
   }
 }

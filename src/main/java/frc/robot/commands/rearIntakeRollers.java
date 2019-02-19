@@ -7,24 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Vacuum_subsystem;
-/**
- * @command turns hatch panel vacume on and off when a buton is pressed
- */
+import frc.robot.RobotMap;
 
-public class VacuumButtons extends Command {
-  boolean buttonPressed;
-  boolean previouslyReleased = true;
-  boolean active = false;
+public class rearIntakeRollers extends Command {
 
-  public VacuumButtons() {
+  double tolerance = 0.1;
+
+  public rearIntakeRollers() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.vacuum);
+     requires(Robot.rearIntakeRollers_subsystem);
   }
 
   // Called just before this Command runs the first time
@@ -35,24 +28,17 @@ public class VacuumButtons extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+double rollerSpeedIn = 0.5; 
+boolean rollerIn = Robot.m_oi.xButton1.get();  //x button at 0.5 speed
+double rollerSpeedOut = Robot.m_oi.getRightTriggerAxis(Robot.m_oi.intakeController); //y button at -0.5 speed
 
-    //toggle the vacuum on and off on button release
-      active = Robot.m_oi.rightBumbper1.get();
-      if (buttonPressed && previouslyReleased) { 
-        active = !active;
-        previouslyReleased = false;
-      } 
-      else if(!buttonPressed){
-        previouslyReleased = true;
-       }
-       if(active){
-        Robot.vacuum.vacuumSucktion(true);
-      }
-      else{
-        Robot.vacuum.vacuumSucktion(false); 
-      }
-    }
-  
+//if x is pressed speed 0.5
+//else y do -.5
+//else 0
+
+Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedIn);
+Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedOut);
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -63,12 +49,13 @@ public class VacuumButtons extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.vacuum.vacuumSucktion(false); 
+    Robot.rearIntakeRollers_subsystem.rollerSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
