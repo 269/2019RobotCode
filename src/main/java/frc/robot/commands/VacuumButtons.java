@@ -17,7 +17,7 @@ import frc.robot.subsystems.Vacuum_subsystem;
  */
 public class VacuumButtons extends Command {
   boolean buttonPressed;
-  boolean previouslyPressed = true;
+  boolean previouslyReleased = true;
   boolean active = false;
 
   public VacuumButtons() {
@@ -37,12 +37,12 @@ public class VacuumButtons extends Command {
 
     //toggle the vacuum on and off on button release
     buttonPressed = Robot.m_oi.rightBumbper.get();
-    if (buttonPressed && previouslyPressed) { 
+    if (buttonPressed && previouslyReleased) { 
       active = !active;
-      previouslyPressed = false;
+      previouslyReleased = false;
     } 
     else if(!buttonPressed){
-      previouslyPressed = true;
+      previouslyReleased = true;
      }
     if(active){
       Robot.vacuum.vacuumSucktion(true);
