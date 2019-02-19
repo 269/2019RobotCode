@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/***
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Relay;
@@ -15,6 +15,7 @@ import frc.robot.subsystems.Vacuum_subsystem;
 /**
  * @command turns hatch panel vacume on and off when a buton is pressed
  */
+/*
 public class VacuumButtons extends Command {
   boolean buttonPressed;
   boolean previouslyReleased = true;
@@ -70,3 +71,5 @@ public class VacuumButtons extends Command {
   protected void interrupted() {
   }
 }
+
+*/

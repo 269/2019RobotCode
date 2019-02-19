@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
   public static elevator_subsystem elevator = null;
   public static frontIntake_subsystem frontIntake = null;
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
-  public static Vacuum_subsystem vacuum = null;
+  //public static Vacuum_subsystem vacuum = null;
   public static leadScrew_subsystem leadScrews = null;
 
   public Robot(){
@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
     elevator = new elevator_subsystem();
     frontIntake = new frontIntake_subsystem();
     frontIntakeRotation = new frontIntakeRotation_subsystem();
-    vacuum = new Vacuum_subsystem();
+    // = new Vacuum_subsystem();
     leadScrews = new leadScrew_subsystem();
 
     //adds options of commands to run to smart dashboard for auto modes

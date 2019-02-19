@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.VacuumButtons;
+//import frc.robot.commands.VacuumButtons;
 /**
  * mechanism for picking up hatch panels 
  */
@@ -40,6 +40,6 @@ public class Vacuum_subsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new VacuumButtons());
+    //setDefaultCommand(new VacuumButtons());
   }
 }
