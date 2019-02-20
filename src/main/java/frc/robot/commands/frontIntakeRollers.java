@@ -32,12 +32,15 @@ public class frontIntakeRollers extends Command {
   @Override
   protected void execute() {
    
-    double rollerSpeedIn = Robot.m_oi.getLeftTriggerAxis(Robot.m_oi.intakeController);
-    double rollerSpeedOut = Robot.m_oi.getRightTriggerAxis(Robot.m_oi.intakeController);
+    boolean rollerSpeedIn = Robot.m_oi.aButton1.get();
+    boolean rollerSpeedOut = Robot.m_oi.bButton1.get();
 
-    Robot.frontIntake.rollerSpeed(rollerSpeedIn);
-    Robot.frontIntake.rollerSpeed(rollerSpeedOut);
-
+    if(rollerSpeedIn){
+      Robot.frontIntake.rollerSpeed(0.5);
+    }
+    else if (rollerSpeedOut){
+      Robot.frontIntake.rollerSpeed(-0.5);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
