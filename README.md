@@ -11,8 +11,8 @@ PRIORITIES:
 TODO:
 - create a fusedheading reset upon starting of a match(teleop init & auto init)
 - create a single method to be accessed by anything that returns the current robots angle(fusedheading or yaw can be swaped but return same values when rotating same direction)
-- create a rear intake roller subsystem and command --Bence
-- create a rotate to angle command from pov buttons --Grace
+- ~~create a rear intake roller subsystem and command --Bence~~
+- ~~create a rotate to angle command from pov buttons --Grace~~
 - setup camera & driverstation layout for driver
 - add upper and lower limit to lead screws subsystem
 - add upper and lower limit to rearIntakeRotation_subsystem
