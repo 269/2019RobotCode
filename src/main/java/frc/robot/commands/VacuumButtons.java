@@ -15,9 +15,11 @@ import frc.robot.subsystems.Vacuum_subsystem;
 /**
  * @command turns hatch panel vacume on and off when a buton is pressed
  */
+
 public class VacuumButtons extends Command {
-  boolean toggleRightBumper = false;
-  boolean releasedRightBumper = false;
+  boolean buttonPressed;
+  boolean previouslyReleased = true;
+  boolean active = false;
 
   public VacuumButtons() {
     // Use requires() here to declare subsystem dependencies
@@ -35,18 +37,22 @@ public class VacuumButtons extends Command {
   protected void execute() {
 
     //toggle the vacuum on and off on button release
-    if (Robot.m_oi.rightBumbper.get() == true) { 
-      releasedRightBumper = false;
-      Robot.vacuum.vacuumSucktion(true);
-    } 
-    else {
-      if (releasedRightBumper == false) {
-          toggleRightBumper = !toggleRightBumper;
-          releasedRightBumper = true;
-          Robot.vacuum.vacuumSucktion(false);
+      active = Robot.m_oi.rightBumbper1.get();
+      if (buttonPressed && previouslyReleased) { 
+        active = !active;
+        previouslyReleased = false;
+      } 
+      else if(!buttonPressed){
+        previouslyReleased = true;
+       }
+       if(active){
+        Robot.vacuum.vacuumSucktion(true);
       }
-    }    
-  }
+      else{
+        Robot.vacuum.vacuumSucktion(false); 
+      }
+    }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -57,13 +63,12 @@ public class VacuumButtons extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.vacuum.vacuumSucktion(false);  //do you really want to stop the vacuum when the commands interupted???
+    Robot.vacuum.vacuumSucktion(false); 
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
