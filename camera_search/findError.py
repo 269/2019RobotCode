@@ -4,7 +4,7 @@ from pixy import *
 
 # Pixy2 Python SWIG get blocks example #
 
-print ("Pixy2 Python SWIG Example -- Get Blocks")
+print ("")
 
 pixy.init ()
 pixy.change_prog ("color_connected_components");
@@ -22,7 +22,7 @@ class Blocks (Structure):
 blocks = BlockArray(100)
 frame = 0
 curX = []
-while 1:
+while True:
   curX = []
   count = pixy.ccc_get_blocks (100, blocks)
 
@@ -34,6 +34,8 @@ while 1:
     try:
       findError = (curX[0] + curX[1])/2
       print(findError)
+      #Put pyNetworkTables
     except:
+      #Cant find  2 Objects
       pass
     
