@@ -7,6 +7,7 @@
 
 package frc.robot;
 import frc.robot.commands.RotateGyro;
+import frc.robot.commands.turnToAngle;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
@@ -51,11 +52,11 @@ public class OI {
 
   public OI(){
     OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
-    OI.bButton.whenPressed(new RotateGyro(0.65, 90));
-    //OI.upButton.whenPressed(new TurnToAngle(0.35, 0));
-    //OI.rightButton.whenPressed(new TurnToAngle(0.35, 90));
-    //OI.downButton.whenPressed(new TurnToAngle(0.35, 180));
-    //OI.leftButton.whenPressed(new TurnToAngle(0.35, 270));
+    OI.bButton.whenPressed(new RotateGyro(0.65, 90)); 
+    OI.upButton.whenPressed(new turnToAngle(0.35, 0));
+    OI.rightButton.whenPressed(new turnToAngle(0.35, 90));
+    OI.downButton.whenPressed(new turnToAngle(0.35, 180));
+    OI.leftButton.whenPressed(new turnToAngle(0.35, 270));
 
   }   
 
