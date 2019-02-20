@@ -39,7 +39,7 @@ public class Vacuum_subsystem extends Subsystem {
       vacuum.set(Relay.Value.kOff);
     }
     */
-    if(vacuumSuck  == true){
+    if(vacuumSuck == true){
       vacuum.set(0.35);
     } else{
       vacuum.set(0.0);

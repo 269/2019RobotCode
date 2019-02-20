@@ -37,7 +37,7 @@ public class VacuumButtons extends Command {
   protected void execute() {
 
     //toggle the vacuum on and off on button release
-      active = Robot.m_oi.rightBumbper1.get();
+      buttonPressed = Robot.m_oi.rightBumbper1.get();
       if (buttonPressed && previouslyReleased) { 
         active = !active;
         previouslyReleased = false;
