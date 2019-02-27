@@ -13,7 +13,19 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.driveTrain_subsystem;
+import frc.robot.subsystems.rearIntakeRotation_subsystem;
 import frc.robot.subsystems.elevator_subsystem;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.networktables.NetworkTable;
+import frc.robot.subsystems.frontIntake_subsystem;
+import frc.robot.subsystems.frontIntakeRotation_subsystem;
+import frc.robot.subsystems.Vacuum_subsystem;
+import frc.robot.subsystems.leadScrew_subsystem;
+import frc.robot.subsystems.rearIntakeRollers_subsystem;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -22,10 +34,37 @@ import frc.robot.subsystems.elevator_subsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static OI m_oi;
-  public static driveTrain_subsystem driveTrain_subsystem = null;
-  public static elevator_subsystem elevator = null;
+  public static final boolean DEBUG = true;    //turns on certian debugable console outputs
+  public static OI m_oi;                       
+  public static AHRS navx;                     //the kauailabs navx navigation sensor
+  public static boolean errStatus;               //stores error status of navx initalization
+  public static NetworkTableEntry targetValue; //idk something to do with getting pixycam traget value
 
+  //declare subsystems
+  public static driveTrain_subsystem driveTrain_subsystem = null;
+  public static rearIntakeRotation_subsystem rearIntakeRotation = null;
+  public static elevator_subsystem elevator = null;
+  public static frontIntake_subsystem frontIntake = null;
+  public static frontIntakeRotation_subsystem frontIntakeRotation = null;
+  public static rearIntakeRollers_subsystem rearIntakeRollers_subsystem = null;
+  public static Vacuum_subsystem vacuum = null;
+  public static leadScrew_subsystem leadScrews = null;
+
+  public Robot(){
+
+    //initalize navx over roborio MXP SPI port
+    try{
+      navx = new AHRS(SPI.Port.kMXP);
+      System.out.println("it's trying its best fam");
+      errStatus = false;
+    } catch (RuntimeException ex ) {
+        System.out.println("Error instantiating navX-MXP:  " + ex.getMessage());
+        errStatus = true;
+    }
+    //add code to check error status and determin if there was an error     
+  }
+
+  //gets auto mode from dashboard
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -35,12 +74,37 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //calling our subystems to run
     m_oi = new OI();
     driveTrain_subsystem = new driveTrain_subsystem();
+    rearIntakeRollers_subsystem = new rearIntakeRollers_subsystem();
+    rearIntakeRotation = new rearIntakeRotation_subsystem();
     elevator = new elevator_subsystem();
+    frontIntake = new frontIntake_subsystem();
+    frontIntakeRotation = new frontIntakeRotation_subsystem();
+    vacuum = new Vacuum_subsystem();
+    leadScrews = new leadScrew_subsystem();
+
+    //adds options of commands to run to smart dashboard for auto modes
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
+    //get pixie camera target x pos of vision tape
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("pixieCamera");
+    targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
+    System.out.println("targetvalueXPOS " + targetValue);
+  }
+   
+  /**
+   * 
+   * @return returns 360 Yaw vs the 180 to -180
+   */
+  public static double getFullYaw() {
+    if(Robot.navx.getYaw() <= 0)
+      return -Robot.navx.getYaw();
+    else
+      return 360 - Robot.navx.getYaw();
   }
 
   /**
@@ -51,7 +115,7 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before
    * LiveWindow and SmartDashboard integrated updating.
    */
-  @Override
+  @Override 
   public void robotPeriodic() {
   }
 
@@ -82,6 +146,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    //add code to reset the fusedHeading and add delay so it finishes resetting
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -111,6 +176,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    //only reset fusedheading if not already reset from autoinit
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -122,6 +188,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    
+    if(DEBUG){
+      // System.out.println("Compass head : " + navx.getCompassHeading());
+      System.out.println("Fused Heading : " + navx.getFusedHeading());
+      //System.out.println("Yaw : " + getFullYaw());
+      System.out.println("Target Value: " + targetValue);
+    }
   }
 
   /**
@@ -130,4 +203,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }

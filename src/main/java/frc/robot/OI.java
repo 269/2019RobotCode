@@ -6,8 +6,13 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
+import frc.robot.commands.RotateGyro;
+import frc.robot.commands.turnToAngle;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,16 +47,74 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  public Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
-  public Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
-  
+  //declarations
+    //none at the momment
 
+  public OI(){
+    yButton.whenPressed(new RotateGyro(0.65, -90));  
+    bButton.whenPressed(new RotateGyro(0.65, 90)); 
+    upButton.whenPressed(new turnToAngle(0.35, 0));
+    rightButton.whenPressed(new turnToAngle(0.35, 90));
+    downButton.whenPressed(new turnToAngle(0.35, 180));
+    leftButton.whenPressed(new turnToAngle(0.35, 270));
+  }   
 
-  public double getLeftJoystickX(Joystick joy){
-    return joy.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+  //methods  
+  /**
+   * 
+   * @param controller the USB controller you want 
+   * @return  returns the x axis left joystick (-1.0 - 1.0)
+   */
+  public double getLeftJoystickX(Joystick controller){       //gets the left joysticks corrected x axis
+    return controller.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+  }
+/**
+ * 
+ * @param controller the USB controller you want
+ * @return returns the left trigger (0.0 to 1.0)
+ */
+  public double getLeftTriggerAxis(Joystick controller){      //gets the left triggers corrected axis
+    return controller.getRawAxis(RobotMap.LEFT_TRIGGER);
+  }
+  /**
+   * 
+   * @param controller the USB controller you want
+   * @return returns the right trigger (0.0 to -1.0)
+   */
+  public double getRightTriggerAxis(Joystick controller){     //gets the right triggers corrected axis (inverted)
+    return -1*controller.getRawAxis(RobotMap.RIGHT_TRIGGER);
   }
 
+  //creating controllers NOTE: in wpilib joystick = controller
+  public Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
+  public Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
 
+  //creating buttons
+  public JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
+  public JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
+  public JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);
+  public JoystickButton leftBumbper1 = new JoystickButton(intakeController, RobotMap.LEFT_BUMBPER);
+
+  public JoystickButton xButton = new JoystickButton(driverController, RobotMap.X_BUTTON);
+  public JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
+  public JoystickButton yButton = new JoystickButton(driverController, RobotMap.Y_BUTTON);
+  public JoystickButton aButton = new JoystickButton(driverController, RobotMap.A_BUTTON);
+
+  public JoystickButton xButton1 = new JoystickButton(intakeController, RobotMap.X_BUTTON);
+  public JoystickButton bButton1 = new JoystickButton(intakeController, RobotMap.B_BUTTON);
+  public JoystickButton yButton1 = new JoystickButton(intakeController, RobotMap.Y_BUTTON);
+  public JoystickButton aButton1 = new JoystickButton(intakeController, RobotMap.A_BUTTON);
+
+  public POVButton upButton = new POVButton(driverController, 0, RobotMap.UP_BUTTON);
+  public POVButton rightButton = new POVButton(driverController, 90, RobotMap.RIGHT_BUTTON);
+  public POVButton downButton = new POVButton(driverController, 180, RobotMap.DOWN_BUTTON);
+  public POVButton leftButton = new POVButton(driverController, 270, RobotMap.LEFT_BUTTON);
+
+  public POVButton upButton1 = new POVButton(intakeController, 0, RobotMap.UP_BUTTON);
+  public POVButton rightButton1 = new POVButton(intakeController, 90, RobotMap.RIGHT_BUTTON);
+  public POVButton downButton1 = new POVButton(intakeController, 180, RobotMap.DOWN_BUTTON);
+  public POVButton leftButton1 = new POVButton(intakeController, 270, RobotMap.LEFT_BUTTON);
 
 }
+
 
