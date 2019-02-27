@@ -11,16 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-//Controlling Front Intake Motors
-public class frontIntakeRollers extends Command {
+public class rearIntakeRollers extends Command {
 
   double tolerance = 0.1;
 
-  public frontIntakeRollers() {
+  public rearIntakeRollers() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.frontIntake);
-
+     requires(Robot.rearIntakeRollers_subsystem);
   }
 
   // Called just before this Command runs the first time
@@ -31,32 +28,28 @@ public class frontIntakeRollers extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-     
-    boolean rollerSpeedIn = Robot.m_oi.aButton1.get();
-    boolean rollerSpeedOut = Robot.m_oi.bButton1.get();
+double rollerSpeedIn = 0.5; 
+boolean rollerIn = Robot.m_oi.xButton1.get();  //x button at 0.5 speed
+double rollerSpeedOut = Robot.m_oi.getRightTriggerAxis(Robot.m_oi.intakeController); //y button at -0.5 speed
 
-    if(rollerSpeedIn){
-      Robot.frontIntake.rollerSpeed(0.5);
-    }
-    else if (rollerSpeedOut){
-      Robot.frontIntake.rollerSpeed(-0.5);
-    }
-    else{
-      Robot.frontIntake.rollerSpeed(0);
-    }
+//if x is pressed speed 0.5
+//else y do -.5
+//else 0
+
+Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedIn);
+Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedOut);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
-    
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.frontIntake.rollerSpeed(0);
+    Robot.rearIntakeRollers_subsystem.rollerSpeed(0);
   }
 
   // Called when another command which requires one or more of the same

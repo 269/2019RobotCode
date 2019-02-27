@@ -15,9 +15,10 @@ import frc.robot.subsystems.Vacuum_subsystem;
 /**
  * @command turns hatch panel vacume on and off when a buton is pressed
  */
+
 public class VacuumButtons extends Command {
   boolean buttonPressed;
-  boolean previouslyPressed = true;
+  boolean previouslyReleased = true;
   boolean active = false;
 
   public VacuumButtons() {
@@ -36,21 +37,22 @@ public class VacuumButtons extends Command {
   protected void execute() {
 
     //toggle the vacuum on and off on button release
-    buttonPressed = Robot.m_oi.rightBumbper.get();
-    if (buttonPressed && previouslyPressed) { 
-      active = !active;
-      previouslyPressed = false;
-    } 
-    else if(!buttonPressed){
-      previouslyPressed = true;
-     }
-    if(active){
-      Robot.vacuum.vacuumSucktion(true);
+      buttonPressed = Robot.m_oi.rightBumbper1.get();
+      if (buttonPressed && previouslyReleased) { 
+        active = !active;
+        previouslyReleased = false;
+      } 
+      else if(!buttonPressed){
+        previouslyReleased = true;
+       }
+       if(active){
+        Robot.vacuum.vacuumSucktion(true);
+      }
+      else{
+        Robot.vacuum.vacuumSucktion(false); 
+      }
     }
-    else{
-      Robot.vacuum.vacuumSucktion(false); 
-    }
-  }  
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
