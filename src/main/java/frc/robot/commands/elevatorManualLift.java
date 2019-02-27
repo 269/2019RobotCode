@@ -40,7 +40,7 @@ public class elevatorManualLift extends Command {
   protected void execute() {
     double liftSpeed = 0;
 
-    if (Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController) > Math.abs(JOYSTICK_THRESHOLD)) {
+    if (Robot.m_oi.getLeftJoystickX(Robot.m_oi.intakeController) > Math.abs(JOYSTICK_THRESHOLD)) {
       liftStates = LiftStates.MANUAL;
     } else if (Robot.m_oi.xButton.get()) { // Lift State 1
       liftStates = LiftStates.LEVELONE;
