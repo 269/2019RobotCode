@@ -69,4 +69,6 @@ public class RobotMap {
   public static final int DOWN_BUTTON = 4;
   public static final int LEFT_BUTTON = 6;
 
+  //PID Constants
+  PIDConstants elevatorConstants = new PIDConstants(0, 0, 0, 0, 0, 0);
 }

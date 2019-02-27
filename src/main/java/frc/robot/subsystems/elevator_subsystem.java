@@ -27,6 +27,8 @@ public class elevator_subsystem extends Subsystem {
 public elevator_subsystem(){
   elevatorRight = new WPI_TalonSRX(RobotMap.RIGHT_ELEVATOR);
   elevatorLeft = new WPI_TalonSRX(RobotMap.LEFT_ELEVATOR);
+
+  // Set PID Constant values on motor controller
 }
 
 boolean bottomLimit = false;
