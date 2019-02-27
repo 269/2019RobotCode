@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevatorManualLift;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -51,6 +52,12 @@ public void move(double speed){//moving the elevator up or down depending on the
 
 //WE HAVEN'T PROGRAMMED ENCODERS YET, GOTTA DO THAT!!!
 
+}
+
+public void PIDControl(double setpoint) {
+  elevatorRight.follow(elevatorLeft); // Makes elevatorLeft the primary motor controller (USE EVERYWHERE ELSE PLEASE)
+
+  elevatorLeft.set(ControlMode.MotionMagic, setpoint);
 }
 
   @Override

@@ -15,6 +15,17 @@ import frc.robot.RobotMap;
 //Command for Running Elevator commands in subsys
 
 public class elevatorManualLift extends Command {
+  private static final double JOYSTICK_THRESHOLD = 0.05;
+  private static final double LEVEL_ONE_HEIGHT = 100;
+  private static final double LEVEL_TWO_HEIGHT = 200;
+  private static final double LEVEL_THREE_HEIGHT = 300;
+  private static enum LiftStates {
+    MANUAL, LEVELONE, LEVELTWO, LEVELTHREE
+  }
+  private static LiftStates liftStates;
+
+  private double liftRequestedValue = 0;
+
   public elevatorManualLift() {
     requires(Robot.elevator);
   }
@@ -27,8 +38,36 @@ public class elevatorManualLift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double liftSpeed = Robot.m_oi.intakeController.getRawAxis(RobotMap.LEFT_JOYSTICK_Y);
-    Robot.elevator.move(liftSpeed);
+    double liftSpeed = 0;
+
+    if (Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController) > Math.abs(JOYSTICK_THRESHOLD)) {
+      liftStates = LiftStates.MANUAL;
+    } else if (Robot.m_oi.xButton.get()) { // Lift State 1
+      liftStates = LiftStates.LEVELONE;
+      liftRequestedValue = LEVEL_ONE_HEIGHT;
+    } else if (Robot.m_oi.yButton.get()) {
+      liftStates = LiftStates.LEVELTWO;
+      liftRequestedValue = LEVEL_TWO_HEIGHT;
+    } else if (Robot.m_oi.aButton.get()) {
+      liftStates = LiftStates.LEVELTHREE;
+      liftRequestedValue = LEVEL_THREE_HEIGHT;
+    }
+
+    switch (liftStates) {
+      case MANUAL:
+        liftSpeed = Robot.m_oi.intakeController.getRawAxis(RobotMap.LEFT_JOYSTICK_Y);
+        Robot.elevator.move(liftSpeed);
+        break;
+
+      case LEVELONE:
+      case LEVELTWO:
+      case LEVELTHREE:
+        Robot.elevator.PIDControl(liftRequestedValue);
+        break;
+    }
+
+
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,5 +87,9 @@ Robot.elevator.move(0);
   @Override
   protected void interrupted() {
   end();
+  }
+
+  private double PIDControl() {
+    return 0;
   }
 }
