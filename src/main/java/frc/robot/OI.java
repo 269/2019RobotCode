@@ -50,8 +50,8 @@ public class OI {
     //none at the momment
 
   public OI(){
-    OI.yButton.whenPressed(new RotateGyro(0.65, -90));  
-    OI.bButton.whenPressed(new RotateGyro(0.65, 90));
+    yButton.whenPressed(new RotateGyro(0.65, -90));  
+    bButton.whenPressed(new RotateGyro(0.65, 90));
     //OI.upButton.whenPressed(new TurnToAngle(0.35, 0));
     //OI.rightButton.whenPressed(new TurnToAngle(0.35, 90));
     //OI.downButton.whenPressed(new TurnToAngle(0.35, 180));
@@ -86,34 +86,34 @@ public class OI {
   }
 
   //creating controllers NOTE: in wpilib joystick = controller
-  public static Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
-  public static Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
+  public Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
+  public Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
 
   //creating buttons
-  public static JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
-  public static JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
-  public static JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);
-  public static JoystickButton leftBumbper1 = new JoystickButton(intakeController, RobotMap.LEFT_BUMBPER);
+  public JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
+  public JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
+  public JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);
+  public JoystickButton leftBumbper1 = new JoystickButton(intakeController, RobotMap.LEFT_BUMBPER);
 
-  public static JoystickButton xButton = new JoystickButton(driverController, RobotMap.X_BUTTON);
-  public static JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
-  public static JoystickButton yButton = new JoystickButton(driverController, RobotMap.Y_BUTTON);
-  public static JoystickButton aButton = new JoystickButton(driverController, RobotMap.A_BUTTON);
+  public JoystickButton xButton = new JoystickButton(driverController, RobotMap.X_BUTTON);
+  public JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
+  public JoystickButton yButton = new JoystickButton(driverController, RobotMap.Y_BUTTON);
+  public JoystickButton aButton = new JoystickButton(driverController, RobotMap.A_BUTTON);
 
-  public static JoystickButton xButton1 = new JoystickButton(intakeController, RobotMap.X_BUTTON);
-  public static JoystickButton bButton1 = new JoystickButton(intakeController, RobotMap.B_BUTTON);
-  public static JoystickButton yButton1 = new JoystickButton(intakeController, RobotMap.Y_BUTTON);
-  public static JoystickButton aButton1 = new JoystickButton(intakeController, RobotMap.A_BUTTON);
+  public JoystickButton xButton1 = new JoystickButton(intakeController, RobotMap.X_BUTTON);
+  public JoystickButton bButton1 = new JoystickButton(intakeController, RobotMap.B_BUTTON);
+  public JoystickButton yButton1 = new JoystickButton(intakeController, RobotMap.Y_BUTTON);
+  public JoystickButton aButton1 = new JoystickButton(intakeController, RobotMap.A_BUTTON);
 
-  public static POVButton upButton = new POVButton(driverController, 0, RobotMap.UP_BUTTON);
-  public static POVButton rightButton = new POVButton(driverController, 90, RobotMap.RIGHT_BUTTON);
-  public static POVButton downButton = new POVButton(driverController, 180, RobotMap.DOWN_BUTTON);
-  public static POVButton leftButton = new POVButton(driverController, 270, RobotMap.LEFT_BUTTON);
+  public POVButton upButton = new POVButton(driverController, 0, RobotMap.UP_BUTTON);
+  public POVButton rightButton = new POVButton(driverController, 90, RobotMap.RIGHT_BUTTON);
+  public POVButton downButton = new POVButton(driverController, 180, RobotMap.DOWN_BUTTON);
+  public POVButton leftButton = new POVButton(driverController, 270, RobotMap.LEFT_BUTTON);
 
-  public static POVButton upButton1 = new POVButton(intakeController, 0, RobotMap.UP_BUTTON);
-  public static POVButton rightButton1 = new POVButton(intakeController, 90, RobotMap.RIGHT_BUTTON);
-  public static POVButton downButton1 = new POVButton(intakeController, 180, RobotMap.DOWN_BUTTON);
-  public static POVButton leftButton1 = new POVButton(intakeController, 270, RobotMap.LEFT_BUTTON);
+  public POVButton upButton1 = new POVButton(intakeController, 0, RobotMap.UP_BUTTON);
+  public POVButton rightButton1 = new POVButton(intakeController, 90, RobotMap.RIGHT_BUTTON);
+  public POVButton downButton1 = new POVButton(intakeController, 180, RobotMap.DOWN_BUTTON);
+  public POVButton leftButton1 = new POVButton(intakeController, 270, RobotMap.LEFT_BUTTON);
 
 }
 
