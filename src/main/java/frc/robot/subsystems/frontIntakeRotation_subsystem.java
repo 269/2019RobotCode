@@ -19,7 +19,7 @@ import frc.robot.commands.frontIntakeRotateCommand;
 public class frontIntakeRotation_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_TalonSRX frontIntakeRotate = null;
+  public WPI_TalonSRX frontIntakeRotate = null;
 
   public frontIntakeRotation_subsystem() {
 
