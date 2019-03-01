@@ -94,6 +94,10 @@ public class Robot extends TimedRobot {
     NetworkTable table = inst.getTable("pixieCamera");
     targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
     System.out.println("targetvalueXPOS " + targetValue);
+
+    elevator.elevatorLeft.configFactoryDefault();
+    elevator.elevatorRight.configFactoryDefault();
+
   }
    
   /**

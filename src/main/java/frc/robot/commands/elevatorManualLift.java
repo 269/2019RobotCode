@@ -20,7 +20,7 @@ public class elevatorManualLift extends Command {
   private static final double LEVEL_TWO_HEIGHT = 200;
   private static final double LEVEL_THREE_HEIGHT = 300;
   private static enum LiftStates {
-    MANUAL, PID
+    MANUAL, LEVELONE, LEVELTWO, LEVELTHREE
   }
   private static LiftStates liftStates;
 
@@ -43,15 +43,15 @@ public class elevatorManualLift extends Command {
     if (Robot.m_oi.getLeftJoystickX(Robot.m_oi.intakeController) > Math.abs(JOYSTICK_THRESHOLD)) {
       liftStates = LiftStates.MANUAL;
     } else if (Robot.m_oi.xButton.get()) { // Lift State 1
-      liftStates = LiftStates.PID;
+      liftStates = LiftStates.LEVELONE;
       liftRequestedValue = LEVEL_ONE_HEIGHT;
     } else if (Robot.m_oi.yButton.get()) {
-      liftStates = LiftStates.PID;
+      liftStates = LiftStates.LEVELTWO;
       liftRequestedValue = LEVEL_TWO_HEIGHT;
     } else if (Robot.m_oi.aButton.get()) {
-      liftStates = LiftStates.PID;
+      liftStates = LiftStates.LEVELTHREE;
       liftRequestedValue = LEVEL_THREE_HEIGHT;
-    } 
+    }
 
     switch (liftStates) {
       case MANUAL:
@@ -59,13 +59,12 @@ public class elevatorManualLift extends Command {
         Robot.elevator.move(liftSpeed);
         break;
 
-      case PID:
+      case LEVELONE:
+      case LEVELTWO:
+      case LEVELTHREE:
         Robot.elevator.PIDControl(liftRequestedValue);
         break;
     }
-
-
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

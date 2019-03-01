@@ -68,7 +68,11 @@ public class RobotMap {
   public static final int RIGHT_BUTTON = 2;
   public static final int DOWN_BUTTON = 4;
   public static final int LEFT_BUTTON = 6;
+  //Sensors
+  public static final int ELEVATOR_ENCODERA = 0;
+  public static final int ELEVATOR_ENCODERB = 1;
 
-  //PID Constants
-  PIDConstants elevatorConstants = new PIDConstants(0, 0, 0, 0, 0, 0);
+  //PID Constants: ORDER-kP,kI,kD,kF,KIzone,kPeakOutput
+  public static final PIDConstants ELEVATOR_CONSTANTS = new PIDConstants(15000,6000, 0, 0, 0, 0, 0, 0);
+  
 }
