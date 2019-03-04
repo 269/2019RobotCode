@@ -12,8 +12,11 @@ public class PIDConstants {
 	public final int kPIDLoopIdx;
 	public final int cruiseVelocity;
 	public final int acceleration;
+	public final int forwardSensorLimit;
+	public final int reverseSensorLimit;
 	/**
-	 * 
+	 * @param forwardSensorLimit
+	 * @param reverseSensorLimit
 	 * @param cruiseVelocity sensorUnitsPer100ms
 	 * @param acceleration sensorUnitsPer100msPerSec
 	 * @param kPthe distance between the currentPosition and the goalPosition(error)
@@ -24,6 +27,8 @@ public class PIDConstants {
 	 * @param kPeakOutput The max output of the motors
 	 */
 	public PIDConstants(int cruiseVelocity, int acceleration, double kP, double kI, double kD, double kF, int kIzone, double kPeakOutput){
+		this.forwardSensorLimit = 3456;
+		this.reverseSensorLimit = 190;
 		this.slotIdx = 0;
 		this.kTimeOutMs = 30;
 		this.kPIDLoopIdx = 0;

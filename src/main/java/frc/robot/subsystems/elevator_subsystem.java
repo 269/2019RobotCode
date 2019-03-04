@@ -52,7 +52,9 @@ public elevator_subsystem(){
   elevatorLeft.configMotionCruiseVelocity(RobotMap.ELEVATOR_CONSTANTS.cruiseVelocity, RobotMap.ELEVATOR_CONSTANTS.kTimeOutMs);
   elevatorLeft.configMotionAcceleration(RobotMap.ELEVATOR_CONSTANTS.acceleration, RobotMap.ELEVATOR_CONSTANTS.kTimeOutMs);
   elevatorLeft.setSelectedSensorPosition(0, RobotMap.ELEVATOR_CONSTANTS.kPIDLoopIdx, RobotMap.ELEVATOR_CONSTANTS.kTimeOutMs);
-  //elevatorLeft.setSensorPhase(true);
+  elevatorLeft.configForwardSoftLimitThreshold(RobotMap.ELEVATOR_CONSTANTS.forwardSensorLimit, RobotMap.ELEVATOR_CONSTANTS.kTimeOutMs);
+  elevatorLeft.configReverseSoftLimitThreshold(RobotMap.ELEVATOR_CONSTANTS.reverseSensorLimit, RobotMap.ELEVATOR_CONSTANTS.kTimeOutMs);
+  //elevatorLeft.setSensorPhase(true); //for inverting the sensor
 }
 
 boolean bottomLimit = false;
