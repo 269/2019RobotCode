@@ -28,7 +28,6 @@ public class frontIntakeRotateCommand extends Command {
   protected void execute() {
     double rotateSpeed = Robot.m_oi.intakeController.getRawAxis(RobotMap.RIGHT_JOYSTICK_Y);
     Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
-    System.out.println("Sensor Pos: " + Robot.frontIntakeRotation.frontIntakeRotate.getSelectedSensorPosition());
   }
 
   // Make this return true when this Command no longer needs to run execute()

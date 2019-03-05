@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevatorManualLift;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -74,6 +75,7 @@ public void move(double speed){//moving the elevator up or down depending on the
   }else{
     elevatorLeft.set(0);
   } 
+  //System.out.println("Elevator pos: " + elevatorLeft.getSelectedSensorPosition());
 }
 
 public void PIDControl(double setpoint) {

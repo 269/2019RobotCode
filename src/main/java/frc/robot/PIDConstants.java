@@ -1,5 +1,7 @@
 package frc.robot;
 
+import frc.robot.Conversions.Subsystem;
+
 public class PIDConstants {
     public final double kP; //the distance between the currentPosition and the goalPosition(error)
 	public final double kI; //how long has it taken to get to goalPosition
@@ -27,8 +29,8 @@ public class PIDConstants {
 	 * @param kPeakOutput The max output of the motors
 	 */
 	public PIDConstants(int cruiseVelocity, int acceleration, double kP, double kI, double kD, double kF, int kIzone, double kPeakOutput){
-		this.forwardSensorLimit = 3456;
-		this.reverseSensorLimit = 190;
+		this.forwardSensorLimit = Conversions.inchesToTicks(55, Subsystem.ELEVATOR);
+		this.reverseSensorLimit = Conversions.inchesToTicks(0, Subsystem.ELEVATOR);
 		this.slotIdx = 0;
 		this.kTimeOutMs = 30;
 		this.kPIDLoopIdx = 0;
