@@ -124,6 +124,7 @@ public class elevatorPIDCargoPos extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    SmartDashboard.putString("elevatorTargetPosition", "N/A");
   }
 
   // Called when another command which requires one or more of the same
