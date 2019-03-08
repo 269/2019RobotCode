@@ -19,7 +19,6 @@ pixy_module = Extension('_pixy',
 
 import os
 print "dir = "
-print os.path.dirname(os.path.realpath(__file__))
 
 setup (name = 'pixy',
   version = '0.1',
