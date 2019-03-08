@@ -32,17 +32,33 @@ public class elevatorPIDLift extends Command {
   @Override
   protected void execute() {
     String elevatorPosition = Robot.elevator.getClosestPosition();
-    int levelC = 1;
-    int levelH = 1;
     final int MAX_LEVEL = 4;
-    final int MIN_LEVEL = 1;
-    
+    final int MIN_LEVEL = 0;
+    int levelH = MIN_LEVEL;
+    int levelC = MIN_LEVEL;
 
+
+    //convert position to level to start at clossest position
+    switch (Robot.elevator.getClosestPosition()) {
+      case "H1":
+        levelH = 1;
+        break;
+    
+      default:
+        levelH = MIN_LEVEL;
+        levelC = MIN_LEVEL;
+        break;
+    }
 
     
     if(position == "up"){
       if(levelH < MAX_LEVEL){
         levelH++;
+        if (levelH == 0) {
+          elevatorPosition = "HPU";
+        } else {
+          elevatorPosition = "H" + levelH;
+        }
       }
     }
     if(position == "down"){
@@ -60,9 +76,24 @@ public class elevatorPIDLift extends Command {
         levelC--;
       }
     }
-      if (levelH == 2) { 
+
+        //set lift RequestedValue based on inc or dec value
+        switch (elevatorPosition) {
+          case "H1":
+          liftRequestedValue = Robot.elevator.LEVEL_ONE_HEIGHT_HATCH;
+          break;
+
+          case "CPU":
+          break;
+        
+          default:
+            levelH = MIN_LEVEL;
+            levelC = MIN_LEVEL;
+            break;
+        }
+        
+      if (elevatorPosition == "H1") { 
       liftRequestedValue = Robot.elevator.LEVEL_ONE_HEIGHT_HATCH;
-      elevatorPosition = "H1";
     } else if (levelH == 3) {
       liftRequestedValue = Robot.elevator.LEVEL_TWO_HEIGHT_HATCH;
       elevatorPosition = "H2";
