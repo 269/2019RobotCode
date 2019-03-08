@@ -7,8 +7,9 @@
 
 package frc.robot;
 import frc.robot.commands.RotateGyro;
+import frc.robot.commands.elevatorPIDCargoPos;
+import frc.robot.commands.elevatorPIDHatchPos;
 import frc.robot.commands.turnToAngle;
-import frc.robot.commands.elevatorPIDLift;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
@@ -58,10 +59,12 @@ public class OI {
     rightButton.whenPressed(new turnToAngle(0.35, 90));
     downButton.whenPressed(new turnToAngle(0.35, 180));
     leftButton.whenPressed(new turnToAngle(0.35, 270));
-    upButton1.whenPressed(new elevatorPIDLift("up"));
-    rightButton1.whenPressed(new elevatorPIDLift("right"));
-    downButton1.whenPressed(new elevatorPIDLift("down"));
-    leftButton1.whenPressed(new elevatorPIDLift("left"));
+
+    //elevator preset positions
+    upButton1.whenPressed(new elevatorPIDHatchPos("up"));
+    downButton1.whenPressed(new elevatorPIDHatchPos("down"));
+    rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
+    leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
 
   }   
 

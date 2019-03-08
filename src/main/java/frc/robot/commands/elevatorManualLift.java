@@ -33,11 +33,8 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
     double liftSpeed = Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
     double currentpos = Robot.elevator.getCurrentPosition();
 
-    if (liftSpeed > Math.abs(JOYSTICK_THRESHOLD)) {
+    if (Math.abs(liftSpeed) > JOYSTICK_THRESHOLD) {
       //elevatorPosition = "M";
-      if((liftSpeed > 0 && currentpos < Robot.elevator.TOP_LIMIT) || (liftSpeed < 0 && currentpos > Robot.elevator.BOTTOM_LIMIT)){
-        Robot.elevator.move(liftSpeed);
-      }
       SmartDashboard.putString("elevatorTargetPosition", "M");
     }
   }

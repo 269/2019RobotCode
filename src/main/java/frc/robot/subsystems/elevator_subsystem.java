@@ -70,27 +70,28 @@ public elevator_subsystem(){
   //elevatorLeft.setSensorPhase(true); //for inverting the sensor
 }
 
-boolean bottomLimit = false;
-boolean topLimit = false;
 
 /**
  * 
  * @param speed 0.0 to -1.0 moves elevator down & 0.0to 1.0 moves elevator up
  */
 public void move(double speed){//moving the elevator up or down depending on the speed (positive or negative)
-  if(speed <= -0.1 && !bottomLimit){ //move down
-    //stops elevator going to low based on encoders
-    elevatorLeft.set(speed);
-  }else if(speed >= 0.1 && !topLimit ){//move up
-    //stops elevator going to high based on encoders
-    elevatorLeft.set(speed);
-  }else{
-    elevatorLeft.set(0);
-  } 
-  SmartDashboard.putString("elevatorClosestPosition", "M-" + getClosestPosition());
+  double currentpos = getCurrentPosition();
+  if ((Math.abs(speed) > 0.05) && ((speed > 0 && currentpos < TOP_LIMIT) || (speed < 0 && currentpos > BOTTOM_LIMIT))){
+      elevatorLeft.set(speed);
+    } else {
+     elevatorLeft.set(0);
+    }
 
+  SmartDashboard.putString("elevatorClosestPosition", "M-" + getClosestPosition());
   //System.out.println("Elevator pos: " + elevatorLeft.getSelectedSensorPosition());
+
 }
+
+/**
+ * 
+ * @return character code for closest position. (CPU,HPU,TOP,BOT,H#,C#) # = the level 1-3
+ */
 public String getClosestPosition(){
   int currentPos = elevatorLeft.getSelectedSensorPosition();
   double inches = Conversions.ticksToInches(currentPos, Conversions.Subsystem.ELEVATOR);
@@ -134,10 +135,18 @@ public String getClosestPosition(){
     }
     return closestPos;
 }
+/**
+ * 
+ * @return the current elevator position in inches
+ */
 public double getCurrentPosition(){
   int currentPos = elevatorLeft.getSelectedSensorPosition();
   return Conversions.ticksToInches(currentPos, Conversions.Subsystem.ELEVATOR);
 }
+/**
+ * 
+ * @param setpoint the disired potion to set the elevator to in ticks
+ */
 public void PIDControl(double setpoint) {
   elevatorLeft.set(ControlMode.MotionMagic, setpoint);
   SmartDashboard.putString("elevatorClosestPosition", getClosestPosition());
