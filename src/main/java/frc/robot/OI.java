@@ -95,6 +95,9 @@ public class OI {
   public JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);
   public JoystickButton leftBumbper1 = new JoystickButton(intakeController, RobotMap.LEFT_BUMBPER);
 
+  public JoystickButton backButton = new JoystickButton(intakeController, RobotMap.BACK_BUTTON);
+  public JoystickButton startButton = new JoystickButton(intakeController, RobotMap.START_BUTTON);
+
   public JoystickButton xButton = new JoystickButton(driverController, RobotMap.X_BUTTON);
   public JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
   public JoystickButton yButton = new JoystickButton(driverController, RobotMap.Y_BUTTON);

@@ -57,8 +57,8 @@ public class RobotMap {
   public static final int X_BUTTON = 3;
   public static final int Y_BUTTON = 4;
 
-  public static final int BACK_BUTTON = 2345678;
-  public static final int START_BUTTON = 156;
+  public static final int BACK_BUTTON = 8;
+  public static final int START_BUTTON = 7;
 
   //Triggers
   public static final int LEFT_TRIGGER = 2;
