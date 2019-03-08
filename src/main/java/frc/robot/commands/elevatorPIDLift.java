@@ -31,14 +31,12 @@ public class elevatorPIDLift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    String elevatorPosition;
+    String elevatorPosition = Robot.elevator.getClosestPosition();
     int levelC = 1;
     int levelH = 1;
     final int MAX_LEVEL = 4;
     final int MIN_LEVEL = 1;
     
-    //switch (Robot.elevator.getClosestPosition())
-
 
 
     
@@ -64,22 +62,22 @@ public class elevatorPIDLift extends Command {
     }
       if (levelH == 2) { 
       liftRequestedValue = Robot.elevator.LEVEL_ONE_HEIGHT_HATCH;
-      elevatorPosition = "1H";
+      elevatorPosition = "H1";
     } else if (levelH == 3) {
       liftRequestedValue = Robot.elevator.LEVEL_TWO_HEIGHT_HATCH;
-      elevatorPosition = "2H";
+      elevatorPosition = "H2";
     } else if (levelH == 4) {
       liftRequestedValue = Robot.elevator.LEVEL_THREE_HEIGHT_HATCH;
-      elevatorPosition = "3H";
+      elevatorPosition = "H3";
     } else if (levelC == 2) {
       liftRequestedValue = Robot.elevator.LEVEL_ONE_HEIGHT_CARGO;
-      elevatorPosition = "1C";
+      elevatorPosition = "C1";
     } else if (levelC == 3) {
       liftRequestedValue = Robot.elevator.LEVEL_TWO_HEIGHT_CARGO;
-      elevatorPosition = "2C";
+      elevatorPosition = "C2";
     } else if (levelC == 4) {
       liftRequestedValue = Robot.elevator.LEVEL_THREE_HEIGHT_CARGO;
-      elevatorPosition = "3C";
+      elevatorPosition = "C3";
     } else if (levelC == 1) {
       liftRequestedValue = Robot.elevator.CARGO_PICKUP;
       elevatorPosition = "CPU";
