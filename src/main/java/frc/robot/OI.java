@@ -8,6 +8,7 @@
 package frc.robot;
 import frc.robot.commands.RotateGyro;
 import frc.robot.commands.turnToAngle;
+import frc.robot.commands.elevatorPIDLift;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
@@ -57,6 +58,11 @@ public class OI {
     rightButton.whenPressed(new turnToAngle(0.35, 90));
     downButton.whenPressed(new turnToAngle(0.35, 180));
     leftButton.whenPressed(new turnToAngle(0.35, 270));
+    upButton1.whenPressed(new elevatorPIDLift("up"));
+    rightButton1.whenPressed(new elevatorPIDLift("right"));
+    downButton1.whenPressed(new elevatorPIDLift("down"));
+    leftButton1.whenPressed(new elevatorPIDLift("left"));
+
   }   
 
   //methods  
@@ -67,6 +73,14 @@ public class OI {
    */
   public double getLeftJoystickX(Joystick controller){       //gets the left joysticks corrected x axis
     return controller.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+  }
+    /**
+   * 
+   * @param controller the USB controller you want 
+   * @return  returns the y axis left joystick (-1.0 - 1.0)
+   */
+  public double getLeftJoystickY(Joystick controller){       //gets the left joysticks corrected y axis
+    return controller.getRawAxis(RobotMap.LEFT_JOYSTICK_Y);
   }
 /**
  * 

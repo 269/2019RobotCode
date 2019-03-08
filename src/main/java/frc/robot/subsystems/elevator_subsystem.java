@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Conversions;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevatorManualLift;
@@ -28,6 +30,16 @@ public class elevator_subsystem extends Subsystem {
   public WPI_TalonSRX elevatorLeft = null;
   public WPI_TalonSRX elevatorRight = null; 
   public Encoder elevatorEncoder;
+  public final double LEVEL_ONE_HEIGHT_HATCH = 0;
+  public final double LEVEL_TWO_HEIGHT_HATCH = 16;
+  public final double LEVEL_THREE_HEIGHT_HATCH = 43;
+  public final double LEVEL_ONE_HEIGHT_CARGO = 13;
+  public final double LEVEL_TWO_HEIGHT_CARGO = 33;
+  public final double LEVEL_THREE_HEIGHT_CARGO = 53;
+  public final double TOP_LIMIT = 55;
+  public final double BOTTOM_LIMIT = 0;
+  public final double CARGO_PICKUP = 12;
+  public final double HATCH_PICKUP = 3;
 
 public elevator_subsystem(){
   elevatorRight = new WPI_TalonSRX(RobotMap.RIGHT_ELEVATOR);
@@ -75,11 +87,60 @@ public void move(double speed){//moving the elevator up or down depending on the
   }else{
     elevatorLeft.set(0);
   } 
+  SmartDashboard.putString("elevatorClosestPosition", "M-" + getClosestPosition());
+
   //System.out.println("Elevator pos: " + elevatorLeft.getSelectedSensorPosition());
 }
-
+public String getClosestPosition(){
+  int currentPos = elevatorLeft.getSelectedSensorPosition();
+  double inches = Conversions.ticksToInches(currentPos, Conversions.Subsystem.ELEVATOR);
+  double mindiff = Math.abs(LEVEL_ONE_HEIGHT_HATCH - inches);
+  String closestPos = "H1";
+    if(Math.abs(LEVEL_TWO_HEIGHT_HATCH - inches)< mindiff){
+      mindiff = Math.abs(LEVEL_TWO_HEIGHT_HATCH - inches);
+      closestPos = "H2";
+    }
+    if(Math.abs(LEVEL_THREE_HEIGHT_HATCH - inches)< mindiff){
+      mindiff = Math.abs(LEVEL_THREE_HEIGHT_HATCH - inches);
+      closestPos = "H3";
+    }
+    if(Math.abs(LEVEL_ONE_HEIGHT_CARGO - inches)< mindiff){
+      mindiff = Math.abs(LEVEL_ONE_HEIGHT_CARGO - inches);
+      closestPos = "C1";
+    }
+    if(Math.abs(LEVEL_TWO_HEIGHT_CARGO - inches)< mindiff){
+      mindiff = Math.abs(LEVEL_TWO_HEIGHT_CARGO - inches);
+      closestPos = "C2";
+    }
+    if(Math.abs(LEVEL_THREE_HEIGHT_CARGO - inches)< mindiff){
+      mindiff = Math.abs(LEVEL_THREE_HEIGHT_CARGO - inches);
+      closestPos = "C3";
+    }
+    if(Math.abs(HATCH_PICKUP - inches)< mindiff){
+      mindiff = Math.abs(HATCH_PICKUP - inches);
+      closestPos = "HPU";
+    }
+    if(Math.abs(CARGO_PICKUP - inches)< mindiff){
+      mindiff = Math.abs(CARGO_PICKUP - inches);
+      closestPos = "CPU";
+    }
+    if(Math.abs(TOP_LIMIT - inches)< mindiff){
+      mindiff = Math.abs(TOP_LIMIT - inches);
+      closestPos = "TOP";
+    }
+    if(Math.abs(BOTTOM_LIMIT - inches)< mindiff){
+      mindiff = Math.abs(BOTTOM_LIMIT - inches);
+      closestPos = "BOT";
+    }
+    return closestPos;
+}
+public double getCurrentPosition(){
+  int currentPos = elevatorLeft.getSelectedSensorPosition();
+  return Conversions.ticksToInches(currentPos, Conversions.Subsystem.ELEVATOR);
+}
 public void PIDControl(double setpoint) {
   elevatorLeft.set(ControlMode.MotionMagic, setpoint);
+  SmartDashboard.putString("elevatorClosestPosition", getClosestPosition());
 }
 
   @Override
