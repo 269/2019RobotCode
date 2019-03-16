@@ -8,22 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 //Command for Running Elevator commands in subsys
 
-public class elevatorManualLift extends Command {
+public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" from center of each port and 8" radius all calculations in inches
   private static final double JOYSTICK_THRESHOLD = 0.05;
-  private static final double LEVEL_ONE_HEIGHT = 100;
-  private static final double LEVEL_TWO_HEIGHT = 200;
-  private static final double LEVEL_THREE_HEIGHT = 300;
-  private static enum LiftStates {
-    MANUAL, LEVELONE, LEVELTWO, LEVELTHREE
-  }
-  private static LiftStates liftStates;
-
-  private double liftRequestedValue = 0;
 
   public elevatorManualLift() {
     requires(Robot.elevator);
@@ -37,36 +29,13 @@ public class elevatorManualLift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double liftSpeed = 0;
+    double liftSpeed = Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
+    double currentpos = Robot.elevator.getCurrentPosition();
 
-    if (Robot.m_oi.getLeftJoystickX(Robot.m_oi.intakeController) > Math.abs(JOYSTICK_THRESHOLD)) {
-      liftStates = LiftStates.MANUAL;
-    } else if (Robot.m_oi.xButton.get()) { // Lift State 1
-      liftStates = LiftStates.LEVELONE;
-      liftRequestedValue = LEVEL_ONE_HEIGHT;
-    } else if (Robot.m_oi.yButton.get()) {
-      liftStates = LiftStates.LEVELTWO;
-      liftRequestedValue = LEVEL_TWO_HEIGHT;
-    } else if (Robot.m_oi.aButton.get()) {
-      liftStates = LiftStates.LEVELTHREE;
-      liftRequestedValue = LEVEL_THREE_HEIGHT;
+    if (Math.abs(liftSpeed) > JOYSTICK_THRESHOLD) {
+      //elevatorPosition = "M";
+      SmartDashboard.putString("elevatorTargetPosition", "M");
     }
-
-    switch (liftStates) {
-      case MANUAL:
-        liftSpeed = Robot.m_oi.intakeController.getRawAxis(RobotMap.LEFT_JOYSTICK_Y);
-        Robot.elevator.move(liftSpeed);
-        break;
-
-      case LEVELONE:
-      case LEVELTWO:
-      case LEVELTHREE:
-        Robot.elevator.PIDControl(liftRequestedValue);
-        break;
-    }
-
-
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -78,17 +47,13 @@ public class elevatorManualLift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-Robot.elevator.move(0);
+    Robot.elevator.move(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  end();
-  }
-
-  private double PIDControl() {
-    return 0;
+    end();
   }
 }

@@ -7,6 +7,8 @@
 
 package frc.robot;
 import frc.robot.commands.RotateGyro;
+import frc.robot.commands.elevatorPIDCargoPos;
+import frc.robot.commands.elevatorPIDHatchPos;
 import frc.robot.commands.turnToAngle;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -55,6 +57,13 @@ public class OI {
     rightButton.whenPressed(new turnToAngle(0.35, 90));
     downButton.whenPressed(new turnToAngle(0.35, 180));
     leftButton.whenPressed(new turnToAngle(0.35, 270));
+
+    //elevator preset positions
+    upButton1.whenPressed(new elevatorPIDHatchPos("up"));
+    downButton1.whenPressed(new elevatorPIDHatchPos("down"));
+    rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
+    leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
+
   }   
 
   //methods  
@@ -65,6 +74,14 @@ public class OI {
    */
   public double getLeftJoystickX(Joystick controller){       //gets the left joysticks corrected x axis
     return controller.getRawAxis(RobotMap.LEFT_JOYSTICK_X);
+  }
+    /**
+   * 
+   * @param controller the USB controller you want 
+   * @return  returns the y axis left joystick (-1.0 - 1.0)
+   */
+  public double getLeftJoystickY(Joystick controller){       //gets the left joysticks corrected y axis
+    return controller.getRawAxis(RobotMap.LEFT_JOYSTICK_Y);
   }
 /**
  * 
@@ -92,6 +109,9 @@ public class OI {
   public JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
   public JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);
   public JoystickButton leftBumbper1 = new JoystickButton(intakeController, RobotMap.LEFT_BUMBPER);
+
+  public JoystickButton backButton = new JoystickButton(intakeController, RobotMap.BACK_BUTTON);
+  public JoystickButton startButton = new JoystickButton(intakeController, RobotMap.START_BUTTON);
 
   public JoystickButton xButton = new JoystickButton(driverController, RobotMap.X_BUTTON);
   public JoystickButton bButton = new JoystickButton(driverController, RobotMap.B_BUTTON);
