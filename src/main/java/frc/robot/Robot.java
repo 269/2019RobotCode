@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
 
     elevator.elevatorLeft.configFactoryDefault();
     elevator.elevatorRight.configFactoryDefault();
-
+    m_oi.bind(); //bind the buttons to commands
   }
    
   /**

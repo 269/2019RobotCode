@@ -27,16 +27,16 @@ public class rearIntakeRollers extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-double rollerSpeedIn = 0.5; 
-boolean rollerIn = Robot.m_oi.xButton1.get();  //x button at 0.5 speed
-double rollerSpeedOut = Robot.m_oi.getRightTriggerAxis(Robot.m_oi.intakeController); //y button at -0.5 speed
+    double rollerSpeedIn = 0.5; 
+    boolean rollerIn = Robot.m_oi.xButton1.get();  //x button at 0.5 speed
+    double rollerSpeedOut = Robot.m_oi.getRightTriggerAxis(Robot.m_oi.intakeController); //y button at -0.5 speed
 
-//if x is pressed speed 0.5
-//else y do -.5
-//else 0
+    //if x is pressed speed 0.5
+    //else y do -.5
+    //else 0
 
-Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedIn);
-Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedOut);
+    Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedIn);
+    Robot.rearIntakeRollers_subsystem.rollerSpeed(rollerSpeedOut);
   }
 
   // Make this return true when this Command no longer needs to run execute()
