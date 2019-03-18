@@ -10,7 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 //Command for Running Elevator commands in subsys
 
@@ -30,7 +29,6 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
   @Override
   protected void execute() {
     double liftSpeed = Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
-    double currentpos = Robot.elevator_subsystem.getCurrentPosition();
 
     if (Math.abs(liftSpeed) > JOYSTICK_THRESHOLD) {
       //elevatorPosition = "M";
