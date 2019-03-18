@@ -18,7 +18,7 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
   private static final double JOYSTICK_THRESHOLD = 0.05;
 
   public elevatorManualLift() {
-    requires(Robot.elevator);
+    requires(Robot.elevator_subsystem);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +30,7 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
   @Override
   protected void execute() {
     double liftSpeed = Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
-    double currentpos = Robot.elevator.getCurrentPosition();
+    double currentpos = Robot.elevator_subsystem.getCurrentPosition();
 
     if (Math.abs(liftSpeed) > JOYSTICK_THRESHOLD) {
       //elevatorPosition = "M";
@@ -47,7 +47,7 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.move(0);
+    Robot.elevator_subsystem.move(0);
   }
 
   // Called when another command which requires one or more of the same

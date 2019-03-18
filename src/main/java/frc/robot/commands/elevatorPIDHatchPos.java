@@ -24,7 +24,7 @@ public class elevatorPIDHatchPos extends Command {
    */
   public elevatorPIDHatchPos(String direction) {
     this.direction = direction;
-    requires(Robot.elevator);
+    //requires(Robot.elevator_subsystem);
   }
 
   // Called just before this Command runs the first time
@@ -41,7 +41,7 @@ public class elevatorPIDHatchPos extends Command {
     int level = MIN_LEVEL;
 
     //convert ClosestPosition to level to start at closest position
-    switch (Robot.elevator.getClosestPosition()) {
+    switch (Robot.elevator_subsystem.getClosestPosition()) {
       case "TOP":
         level = MAX_LEVEL;
         break;
@@ -93,26 +93,26 @@ public class elevatorPIDHatchPos extends Command {
     switch (level) {
       default:
       case 0:
-        liftRequestedValue = Robot.elevator.HATCH_PICKUP;
+        liftRequestedValue = Robot.elevator_subsystem.HATCH_PICKUP;
         elevatorPosition = "HPU";
       break;
       case 1:
-        liftRequestedValue = Robot.elevator.LEVEL_ONE_HEIGHT_HATCH;
+        liftRequestedValue = Robot.elevator_subsystem.LEVEL_ONE_HEIGHT_HATCH;
         elevatorPosition = "H1";
         break;
       case 2:
-        liftRequestedValue = Robot.elevator.LEVEL_TWO_HEIGHT_HATCH;
+        liftRequestedValue = Robot.elevator_subsystem.LEVEL_TWO_HEIGHT_HATCH;
         elevatorPosition = "H2";
         break;
       case 3:
-        liftRequestedValue = Robot.elevator.LEVEL_THREE_HEIGHT_HATCH;
+        liftRequestedValue = Robot.elevator_subsystem.LEVEL_THREE_HEIGHT_HATCH;
         elevatorPosition = "H3";      
         break;
     }
     SmartDashboard.putString("elevatorTargetPosition", elevatorPosition);
 
     liftRequestedValue = Conversions.inchesToTicks(liftRequestedValue, Conversions.Subsystem.ELEVATOR);
-    Robot.elevator.PIDControl(liftRequestedValue);
+    Robot.elevator_subsystem.PIDControl(liftRequestedValue);
   }
 
   // Make this return true when this Command no longer needs to run execute()

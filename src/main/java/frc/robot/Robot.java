@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
   //declare subsystems
   public static driveTrain_subsystem driveTrain_subsystem = null;
   public static rearIntakeRotation_subsystem rearIntakeRotation = null;
-  public static elevator_subsystem elevator = null;
+  public static elevator_subsystem elevator_subsystem = null;
   public static frontIntake_subsystem frontIntake = null;
   public static frontIntakeRotation_subsystem frontIntakeRotation = null;
   public static rearIntakeRollers_subsystem rearIntakeRollers_subsystem = null;
@@ -75,15 +75,16 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     //calling our subystems to run
-    m_oi = new OI();
+    
     driveTrain_subsystem = new driveTrain_subsystem();
     rearIntakeRollers_subsystem = new rearIntakeRollers_subsystem();
     rearIntakeRotation = new rearIntakeRotation_subsystem();
-    elevator = new elevator_subsystem();
+    elevator_subsystem = new elevator_subsystem();
     frontIntake = new frontIntake_subsystem();
     frontIntakeRotation = new frontIntakeRotation_subsystem();
     vacuum = new Vacuum_subsystem();
     leadScrews = new leadScrew_subsystem();
+    m_oi = new OI();
 
     //adds options of commands to run to smart dashboard for auto modes
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -95,8 +96,8 @@ public class Robot extends TimedRobot {
     targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
     System.out.println("targetvalueXPOS " + targetValue);
 
-    elevator.elevatorLeft.configFactoryDefault();
-    elevator.elevatorRight.configFactoryDefault();
+    elevator_subsystem.elevatorLeft.configFactoryDefault();
+    elevator_subsystem.elevatorRight.configFactoryDefault();
 
   }
    

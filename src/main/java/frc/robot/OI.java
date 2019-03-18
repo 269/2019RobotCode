@@ -105,6 +105,8 @@ public class OI {
   public Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
 
   //creating buttons
+  public JoystickButton leftJoyPress = new JoystickButton(driverController, RobotMap.LEFT_JOY_DOWN);
+
   public JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
   public JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
   public JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);

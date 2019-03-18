@@ -68,6 +68,8 @@ public class RobotMap {
   public static final int RIGHT_BUTTON = 2;
   public static final int DOWN_BUTTON = 4;
   public static final int LEFT_BUTTON = 6;
+  //Triggers pushed in
+  public static final int LEFT_JOY_DOWN = 9;
   //Sensors
   public static final int ELEVATOR_ENCODERA = 0;
   public static final int ELEVATOR_ENCODERB = 1;
