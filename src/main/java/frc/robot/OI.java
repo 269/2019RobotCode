@@ -51,8 +51,8 @@ public class OI {
     //none at the momment
 
   public OI(){
-    yButton.whenPressed(new RotateGyro(0.65, -90));  
-    bButton.whenPressed(new RotateGyro(0.65, 90)); 
+    // yButton.whenPressed(new RotateGyro(0.65, -90));  
+    //bButton.whenPressed(new RotateGyro(0.65, 90)); 
     upButton.whenPressed(new turnToAngle(0.35, 0));
     rightButton.whenPressed(new turnToAngle(0.35, 90));
     downButton.whenPressed(new turnToAngle(0.35, 180));
@@ -64,6 +64,9 @@ public class OI {
     rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
     leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
 
+    //Rear Intake
+    //xButton1.whenPressed(new rearIntakeRollers());
+    //yButton1.whenPressed(new rearIntakeRollers());
   }   
 
   //methods  
@@ -105,6 +108,8 @@ public class OI {
   public Joystick intakeController = new Joystick(RobotMap.INTAKE_CONTROLLER);
 
   //creating buttons
+  public JoystickButton leftJoyPress = new JoystickButton(driverController, RobotMap.LEFT_JOY_DOWN);
+
   public JoystickButton rightBumbper = new JoystickButton(driverController, RobotMap.RIGHT_BUMBPER);
   public JoystickButton leftBumbper = new JoystickButton(driverController, RobotMap.LEFT_BUMBPER);
   public JoystickButton rightBumbper1 = new JoystickButton(intakeController, RobotMap.RIGHT_BUMBPER);

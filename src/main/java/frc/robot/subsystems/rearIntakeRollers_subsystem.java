@@ -40,12 +40,22 @@ public void rollerSpeed( double rollerSpeed){
   }
 }
 
+double rollerSpeed;
+
+public double rearIntakeRollerIn(){
+  rollerSpeed = 0.5; 
+  return rollerSpeed;
+}
+public double rearIntakeRollerOut(){
+  rollerSpeed = -0.5;
+  return rollerSpeed;
+}
+
+
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new rearIntakeRollers());
-
   }
 }

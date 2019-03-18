@@ -105,10 +105,11 @@ public driveWithJoysticks_command() {
         }
       Robot.driveTrain_subsystem.drive(Y_speed, X_speed, Z_rotatingSpeed);
       System.out.println("x Speed: " + X_speed + "\nY Speed: " + Y_speed + "\n Z Speed: " + Z_rotatingSpeed);
-
+/*
       if (Robot.m_oi.xButton.get() == true) {
         Robot.navx.reset();
     }
+    */
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

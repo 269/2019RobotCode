@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.OI;
 import frc.robot.commands.driveWithJoysticks_command;
 
 /**
@@ -45,6 +46,7 @@ public class driveTrain_subsystem extends Subsystem {
     frontLeftMotor.setInverted(false);
     
   }
+  boolean normDrive = false;
   /**
    * 
    * @param yspeed the motor speed for y axis (-1.0 to 1.0)
@@ -52,6 +54,11 @@ public class driveTrain_subsystem extends Subsystem {
    * @param zspeed the rotation motor speed on x axis (-1.0 to 1.0)
    */
   public void drive(double yspeed, double xspeed, double zspeed ){
-    mecDrive.driveCartesian(xspeed, yspeed, -zspeed, Robot.navx.getFusedHeading());
+    if(Robot.m_oi.leftJoyPress.get() == true){
+      normDrive= !normDrive;
+      mecDrive.driveCartesian(xspeed, yspeed, -zspeed, -0.0);
+    } else if(normDrive == false){
+      mecDrive.driveCartesian(xspeed, yspeed, -zspeed, Robot.navx.getFusedHeading());
+    }
   }
 }
