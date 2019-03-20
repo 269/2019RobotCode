@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-import frc.robot.commands.RotateGyro;
 import frc.robot.commands.elevatorPIDCargoPos;
 import frc.robot.commands.elevatorPIDHatchPos;
 import frc.robot.commands.turnToAngle;
@@ -57,7 +56,6 @@ public class OI {
 
   public void bind() {
     //yButton.whenPressed(new RotateGyro(0.65, -90));  
-    //bButton.whenPressed(new RotateGyro(0.65, 90)); 
     upButton.whenPressed(new turnToAngle(0.35, 0));
     rightButton.whenPressed(new turnToAngle(0.35, 90));
     downButton.whenPressed(new turnToAngle(0.35, 180));
@@ -68,6 +66,7 @@ public class OI {
     downButton1.whenPressed(new elevatorPIDHatchPos("down"));
     rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
     leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
+
   }
 
   //methods  
