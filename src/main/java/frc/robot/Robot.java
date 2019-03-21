@@ -25,7 +25,11 @@ import frc.robot.subsystems.frontIntakeRotation_subsystem;
 import frc.robot.subsystems.Vacuum_subsystem;
 import frc.robot.subsystems.leadScrew_subsystem;
 import frc.robot.subsystems.rearIntakeRollers_subsystem;
+<<<<<<< HEAD
 import edu.wpi.first.cameraserver.CameraServer;
+=======
+import frc.robot.subsystems.visiontracking_subsystem;
+>>>>>>> c7c26108f6b6ea83c33b8c9c72533721802a1787
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -39,7 +43,8 @@ public class Robot extends TimedRobot {
   public static OI m_oi;                       
   public static AHRS navx;                     //the kauailabs navx navigation sensor
   public static boolean errStatus;               //stores error status of navx initalization
-  public static NetworkTableEntry targetValue; //idk something to do with getting pixycam traget value
+  public static NetworkTableEntry targetValue; //getting pixycam target value
+  public static NetworkTableEntry targetSize; //getting pixycam target value
 
   //declare subsystems
   public static driveTrain_subsystem driveTrain_subsystem = null;
@@ -50,6 +55,7 @@ public class Robot extends TimedRobot {
   public static rearIntakeRollers_subsystem rearIntakeRollers_subsystem = null;
   public static Vacuum_subsystem vacuum = null;
   public static leadScrew_subsystem leadScrews = null;
+  public static visiontracking_subsystem visiontracking_subsystem = null;
 
   public Robot(){
 
@@ -85,6 +91,7 @@ public class Robot extends TimedRobot {
     frontIntakeRotation = new frontIntakeRotation_subsystem();
     vacuum = new Vacuum_subsystem();
     leadScrews = new leadScrew_subsystem();
+    visiontracking_subsystem = new visiontracking_subsystem();
     m_oi = new OI();
 
     //adds options of commands to run to smart dashboard for auto modes
@@ -95,10 +102,15 @@ public class Robot extends TimedRobot {
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("pixieCamera");
     targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
+<<<<<<< HEAD
     System.out.println("targetvalueXPOS " + targetValue);
 
     CameraServer.getInstance().startAutomaticCapture();
 
+=======
+    targetSize = table.getEntry("targetSIZE");
+    //System.out.println("targetvalueXPOS " + targetValue.getDouble(0.0));
+>>>>>>> c7c26108f6b6ea83c33b8c9c72533721802a1787
     elevator_subsystem.elevatorLeft.configFactoryDefault();
     elevator_subsystem.elevatorRight.configFactoryDefault();
     m_oi.bind(); //bind the buttons to commands
@@ -201,8 +213,9 @@ public class Robot extends TimedRobot {
       // System.out.println("Compass head : " + navx.getCompassHeading());
       System.out.println("Fused Heading : " + navx.getFusedHeading());
       //System.out.println("Yaw : " + getFullYaw());
-      System.out.println("Target Value: " + targetValue);
+      //System.out.println("Target Value: " + targetValue);
     }
+    System.out.println("targetvalueXPOS " + targetValue.getDouble(0.0));
   }
 
   /**

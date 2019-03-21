@@ -8,8 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.rearIntakeRollers;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -26,20 +26,23 @@ public rearIntakeRollers_subsystem(){
 
 }
 
-double tolerance = 0.1;
+double rollerSpeed = 0.5;
 /**
  * 
  * @param rollerSpeed the speed of the motors (-1.0 to 1.0)
  */
 public void rollerSpeed( double rollerSpeed){
-  if(rollerSpeed >= -tolerance && rollerSpeed <= tolerance){
-    spinRearIntake.set(0);
-  }
-  else{
+  if(Robot.m_oi.xButton1.get()){
     spinRearIntake.set(rollerSpeed);
   }
-}
+  if(Robot.m_oi.yButton1.get()){
+    spinRearIntake.set(-rollerSpeed);
+  }
+  else{
+    spinRearIntake.set(0);
+  }
 
+}
 
   @Override
   public void initDefaultCommand() {
