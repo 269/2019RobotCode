@@ -25,6 +25,7 @@ import frc.robot.subsystems.frontIntakeRotation_subsystem;
 import frc.robot.subsystems.Vacuum_subsystem;
 import frc.robot.subsystems.leadScrew_subsystem;
 import frc.robot.subsystems.rearIntakeRollers_subsystem;
+import edu.wpi.first.cameraserver.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -95,6 +96,8 @@ public class Robot extends TimedRobot {
     NetworkTable table = inst.getTable("pixieCamera");
     targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
     System.out.println("targetvalueXPOS " + targetValue);
+
+    CameraServer.getInstance().startAutomaticCapture();
 
     elevator_subsystem.elevatorLeft.configFactoryDefault();
     elevator_subsystem.elevatorRight.configFactoryDefault();
