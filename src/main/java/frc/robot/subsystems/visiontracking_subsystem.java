@@ -8,10 +8,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
+//import edu.wpi.first.wpilibj.drive.MecanumDrive;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//import frc.robot.Robot;
+//import frc.robot.RobotMap;
+
 
 /**
  * Add your docs here.
@@ -19,7 +20,7 @@ import frc.robot.RobotMap;
 public class visiontracking_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
+/*
   WPI_TalonSRX frontRightMotor = null;
   WPI_TalonSRX frontLeftMotor = null;
   WPI_TalonSRX rearRightMotor = null;
@@ -52,6 +53,7 @@ public class visiontracking_subsystem extends Subsystem {
       }
     }
   }
+  */
 
   @Override
   public void initDefaultCommand() {
