@@ -27,6 +27,7 @@ public class frontIntakeRotateCommand extends Command {
   @Override
   protected void execute() {
     double rotateSpeed = Robot.m_oi.intakeController.getRawAxis(RobotMap.RIGHT_JOYSTICK_Y);
+    
     Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
   }
 

@@ -25,7 +25,8 @@ import frc.robot.subsystems.frontIntakeRotation_subsystem;
 import frc.robot.subsystems.Vacuum_subsystem;
 import frc.robot.subsystems.leadScrew_subsystem;
 import frc.robot.subsystems.rearIntakeRollers_subsystem;
-import frc.robot.subsystems.visiontracking_subsystem;
+import edu.wpi.first.cameraserver.CameraServer;
+//import frc.robot.subsystems.visiontracking_subsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -51,7 +52,7 @@ public class Robot extends TimedRobot {
   public static rearIntakeRollers_subsystem rearIntakeRollers_subsystem = null;
   public static Vacuum_subsystem vacuum = null;
   public static leadScrew_subsystem leadScrews = null;
-  public static visiontracking_subsystem visiontracking_subsystem = null;
+  //public static visiontracking_subsystem visiontracking_subsystem = null;
 
   public Robot(){
 
@@ -87,12 +88,13 @@ public class Robot extends TimedRobot {
     frontIntakeRotation = new frontIntakeRotation_subsystem();
     vacuum = new Vacuum_subsystem();
     leadScrews = new leadScrew_subsystem();
-    visiontracking_subsystem = new visiontracking_subsystem();
+    //visiontracking_subsystem = new visiontracking_subsystem();
     m_oi = new OI();
 
     //adds options of commands to run to smart dashboard for auto modes
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    CameraServer.getInstance().startAutomaticCapture();
 
     //get pixie camera target x pos of vision tape
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
