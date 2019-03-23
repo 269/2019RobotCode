@@ -25,6 +25,7 @@ import frc.robot.subsystems.frontIntakeRotation_subsystem;
 import frc.robot.subsystems.Vacuum_subsystem;
 import frc.robot.subsystems.leadScrew_subsystem;
 import frc.robot.subsystems.rearIntakeRollers_subsystem;
+import edu.wpi.first.cameraserver.CameraServer;
 //import frc.robot.subsystems.visiontracking_subsystem;
 
 /**
@@ -51,7 +52,7 @@ public class Robot extends TimedRobot {
   public static rearIntakeRollers_subsystem rearIntakeRollers_subsystem = null;
   public static Vacuum_subsystem vacuum = null;
   public static leadScrew_subsystem leadScrews = null;
- // public static visiontracking_subsystem visiontracking_subsystem = null;
+  //public static visiontracking_subsystem visiontracking_subsystem = null;
 
   public Robot(){
 
@@ -93,11 +94,16 @@ public class Robot extends TimedRobot {
     //adds options of commands to run to smart dashboard for auto modes
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    CameraServer.getInstance().startAutomaticCapture();
 
     //get pixie camera target x pos of vision tape
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("pixieCamera");
     targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
+    System.out.println("targetvalueXPOS " + targetValue);
+
+    CameraServer.getInstance().startAutomaticCapture();
+
     targetSize = table.getEntry("targetSIZE");
     //System.out.println("targetvalueXPOS " + targetValue.getDouble(0.0));
     elevator_subsystem.elevatorLeft.configFactoryDefault();

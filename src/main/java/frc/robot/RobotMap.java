@@ -30,7 +30,7 @@ public class RobotMap {
   public static final int REAR_LEFT_MOTOR = 7; 
   public static final int REAR_RIGHT_MOTOR = 8;
   //component motors
-  public static final int LEFT_ELEVATOR = 134567;
+  public static final int LEFT_ELEVATOR = 10;
   public static final int RIGHT_ELEVATOR = 2;
   public static final int LEFT_REAR_INTAKE_ROTATION = 4;
   public static final int RIGHT_REAR_INTAKE_ROTATION = 57;

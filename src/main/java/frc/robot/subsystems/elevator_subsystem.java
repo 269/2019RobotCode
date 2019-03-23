@@ -74,13 +74,20 @@ public elevator_subsystem(){
  * 
  * @param speed 0.0 to -1.0 moves elevator down & 0.0to 1.0 moves elevator up
  */
-public void move(double speed){//moving the elevator up or down depending on the speed (positive or negative)
+public void move(double liftSpeed){//moving the elevator up or down depending on the speed (positive or negative)
   double currentpos = getCurrentPosition();
-  if ((Math.abs(speed) > 0.05) && ((speed > 0 && currentpos < TOP_LIMIT) || (speed < 0 && currentpos > BOTTOM_LIMIT))){
-      elevatorLeft.set(speed);
+  elevatorLeft.set(liftSpeed);
+  /*if ((Math.abs(liftSpeed) > 0.05) && ((liftSpeed > 0 && currentpos < TOP_LIMIT) || (liftSpeed < 0 && currentpos > BOTTOM_LIMIT))){
+      elevatorLeft.set(liftSpeed);
     } else {
      elevatorLeft.set(0);
     }
+    */
+
+  System.out.println("Lift speed: " + liftSpeed);
+  System.out.println("Encoder Top:" + TOP_LIMIT);
+  System.out.println("Encoder Bot:" + BOTTOM_LIMIT);
+  System.out.println("current pos:" + currentpos);
 
   SmartDashboard.putString("elevatorClosestPosition", "M-" + getClosestPosition());
   //System.out.println("Elevator pos: " + elevatorLeft.getSelectedSensorPosition());

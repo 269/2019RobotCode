@@ -41,7 +41,7 @@ public class visiontracking_subsystem extends Subsystem {
   public void drive(double yspeed, double xspeed, double zspeed){
     mecDrive.driveCartesian(xspeed, yspeed, -zspeed, -0.0);
 
-    if(Robot.m_oi.aButton.get()){
+/*if(Robot.m_oi.aButton.get()){
       if((xpos - tolerance) < xpos && xpos < (xpos + tolerance)){
         mecDrive.driveCartesian(0, 0, -0, -0.0);
       }
@@ -51,9 +51,11 @@ public class visiontracking_subsystem extends Subsystem {
       else if(xpos > 157 + tolerance){
         mecDrive.driveCartesian(0, .25, -0, -0.0);
       }
+      else if( xpos == 404 || xpos == 405){
+        
+      }
     }
-  }
-  */
+    */
 
   @Override
   public void initDefaultCommand() {

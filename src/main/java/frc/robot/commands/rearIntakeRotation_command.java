@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 public class rearIntakeRotation_command extends Command {
   public rearIntakeRotation_command() {
@@ -24,8 +23,12 @@ public class rearIntakeRotation_command extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double rotateSpeed = Robot.m_oi.intakeController.getRawAxis(RobotMap.RIGHT_JOYSTICK_X);
-    Robot.rearIntakeRotation.rotate(rotateSpeed);
+    double rotateSpeedIn = Robot.m_oi.getRightTriggerAxis(Robot.m_oi.intakeController);
+    double rotateSpeedOut = Robot.m_oi.getLeftTriggerAxis(Robot.m_oi.intakeController);
+
+    Robot.rearIntakeRotation.rotate(rotateSpeedIn);
+    Robot.rearIntakeRotation.rotate(rotateSpeedOut);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

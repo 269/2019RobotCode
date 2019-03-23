@@ -35,10 +35,10 @@ public class frontIntakeRollers extends Command {
     boolean rollerSpeedOut = Robot.m_oi.bButton1.get();
 
     if(rollerSpeedIn){
-      Robot.frontIntake.rollerSpeed(0.5);
+      Robot.frontIntake.rollerSpeed(-0.5);
     }
     else if (rollerSpeedOut){
-      Robot.frontIntake.rollerSpeed(-0.5);
+      Robot.frontIntake.rollerSpeed(0.5);
     }
     else{
       Robot.frontIntake.rollerSpeed(0);

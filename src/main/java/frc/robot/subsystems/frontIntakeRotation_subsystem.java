@@ -35,11 +35,12 @@ public class frontIntakeRotation_subsystem extends Subsystem {
     if(motorSpeed >= -tolerance && motorSpeed <= tolerance){
       frontIntakeRotate.set(0);
     }
-    else if((!upperLimit && motorSpeed > 0) || (!lowerLimit && motorSpeed < 0)){
+    /*else if((!upperLimit && motorSpeed > 0) || (!lowerLimit && motorSpeed < 0)){
       frontIntakeRotate.set(motorSpeed);
     }
+    */
     else{
-      frontIntakeRotate.set(0);
+      frontIntakeRotate.set(motorSpeed);
     }
   }
 

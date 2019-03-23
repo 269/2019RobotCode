@@ -28,12 +28,17 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double liftSpeed = Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
+    double liftSpeed = - Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
 
-    if (Math.abs(liftSpeed) > JOYSTICK_THRESHOLD) {
+    if (liftSpeed > JOYSTICK_THRESHOLD || liftSpeed < -JOYSTICK_THRESHOLD) {
+      Robot.elevator_subsystem.move(liftSpeed);
       //elevatorPosition = "M";
       SmartDashboard.putString("elevatorTargetPosition", "M");
     }
+    else{
+      Robot.elevator_subsystem.move(0);
+    }
+    System.out.println("LiftSpeed" + liftSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
