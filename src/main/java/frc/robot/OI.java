@@ -50,8 +50,6 @@ public class OI {
     //none at the momment
 
   public OI(){
-
-
   }   
 
   public void bind() {

@@ -100,6 +100,10 @@ public class Robot extends TimedRobot {
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("pixieCamera");
     targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
+    System.out.println("targetvalueXPOS " + targetValue);
+
+    CameraServer.getInstance().startAutomaticCapture();
+
     targetSize = table.getEntry("targetSIZE");
     //System.out.println("targetvalueXPOS " + targetValue.getDouble(0.0));
     elevator_subsystem.elevatorLeft.configFactoryDefault();
