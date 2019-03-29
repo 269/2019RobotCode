@@ -31,8 +31,8 @@ public class RobotMap {
   public static final int REAR_RIGHT_MOTOR = 8;
   //component motors
   public static final int LEFT_ELEVATOR = 10;
-  public static final int RIGHT_ELEVATOR = 2;
-  public static final int LEFT_REAR_INTAKE_ROTATION = 4;
+  public static final int RIGHT_ELEVATOR = 4;
+  public static final int LEFT_REAR_INTAKE_ROTATION = 678;
   public static final int RIGHT_REAR_INTAKE_ROTATION = 57;
   public static final int SPIN_REAR_INTAKE = 97;
   public static final int SPIN_FRONT_INTAKE = 6;
@@ -73,6 +73,11 @@ public class RobotMap {
   //Sensors
   public static final int ELEVATOR_ENCODERA = 0;
   public static final int ELEVATOR_ENCODERB = 1;
+  public static final int FINTAKE_ENCODERA = 0;
+  public static final int FINTAKE_ENCODERB = 1;
+  public static final int UPPERLIMITSWITCH = 0;
+  public static final int LOWERLIMITSWITCH = 1;
+
 
   //PID Constants: ORDER-kP,kI,kD,kF,KIzone,kPeakOutput
   public static final PIDConstants ELEVATOR_CONSTANTS = new PIDConstants(15000,6000, 0, 0, 0, 0, 0, 0);

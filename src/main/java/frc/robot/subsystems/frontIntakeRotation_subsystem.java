@@ -25,7 +25,7 @@ public class frontIntakeRotation_subsystem extends Subsystem {
   frontIntakeRotate = new WPI_TalonSRX(RobotMap.FRONT_INTAKE_ROTATE);
 
   }
-  double tolerance = 0.1;
+  double tolerance = 0.05;
   boolean upperLimit = false, lowerLimit = false;
 /**
  * 
@@ -42,6 +42,7 @@ public class frontIntakeRotation_subsystem extends Subsystem {
     else{
       frontIntakeRotate.set(motorSpeed);
     }
+    System.out.println("rotation: " + motorSpeed);
   }
 
 

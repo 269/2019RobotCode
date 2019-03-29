@@ -49,7 +49,7 @@ public class turnToAngle extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //if crossing 0
+  /*  //if crossing 0
     if((startingYaw >= 270 && startingYaw < 0) && (goalYaw == 90)){
       turnYaw1 = (360 - startingYaw) + goalYaw;
     }
@@ -68,7 +68,7 @@ public class turnToAngle extends Command {
       if(startingYaw > 0 && startingYaw < 180){
         turnYaw1 = startingYaw;
       }else{
-        turnYaw1 = 360 - startingYaw;
+        turnYaw2 = 360 - startingYaw;
       }
     }
     // equal to 180
@@ -79,6 +79,12 @@ public class turnToAngle extends Command {
         turnYaw2 = startingYaw - 180;
       }
     }
+    */
+    currentYaw = Robot.navx.getFusedHeading();
+
+    turnYaw1 = Math.abs(360-goalYaw + startingYaw);
+    turnYaw2 = Math.abs(goalYaw - startingYaw);
+
     if(turnYaw1 < turnYaw2){
       turnCW = true;
     }
@@ -88,11 +94,15 @@ public class turnToAngle extends Command {
     else if(turnYaw1 == turnYaw2){
       turnCW = true;
     }
+
     if(turnCW) { // if the robot is turning clockwise
       Robot.driveTrain_subsystem.drive( 0 ,0 , speed );
     }
     else if(turnCW == false) { // if the robot is turning counterclockwise
      Robot.driveTrain_subsystem.drive( 0 ,0 , -speed );
+   }
+   else if((goalYaw-2 <= currentYaw) && (goalYaw+2 >= currentYaw)){
+     end();
    }
   }
 

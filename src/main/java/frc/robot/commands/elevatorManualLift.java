@@ -28,7 +28,7 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double liftSpeed = -0.85* Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
+    double liftSpeed = - Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
 
     if (liftSpeed > JOYSTICK_THRESHOLD || liftSpeed < -JOYSTICK_THRESHOLD) {
       Robot.elevator_subsystem.move(liftSpeed);

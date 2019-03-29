@@ -38,7 +38,7 @@ public class frontIntakeRollers extends Command {
       Robot.frontIntake.rollerSpeed(-0.5);
     }
     else if (rollerSpeedOut){
-      Robot.frontIntake.rollerSpeed(0.5);
+      Robot.frontIntake.rollerSpeed(1.0);
     }
     else{
       Robot.frontIntake.rollerSpeed(0);

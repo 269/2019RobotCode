@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,11 +40,15 @@ public class elevator_subsystem extends Subsystem {
   public final double BOTTOM_LIMIT = 0;
   public final double CARGO_PICKUP = 12;
   public final double HATCH_PICKUP = 3;
+  //public DigitalInput upperLimitSwitch;
+  //public DigitalInput lowerLimitSwitch;
 
 public elevator_subsystem(){
   elevatorRight = new WPI_TalonSRX(RobotMap.RIGHT_ELEVATOR);
   elevatorLeft = new WPI_TalonSRX(RobotMap.LEFT_ELEVATOR);
   elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODERA, RobotMap.ELEVATOR_ENCODERB);
+ // upperLimitSwitch = new DigitalInput(RobotMap.UPPERLIMITSWITCH);
+ // upperLimitSwitch = new DigitalInput(RobotMap.LOWERLIMITSWITCH);
 
   elevatorRight.follow(elevatorLeft); // Makes elevatorLeft the primary motor controller (USE EVERYWHERE ELSE PLEASE)
 
@@ -76,13 +81,18 @@ public elevator_subsystem(){
  */
 public void move(double liftSpeed){//moving the elevator up or down depending on the speed (positive or negative)
   double currentpos = getCurrentPosition();
+  boolean goAhead = false;
+
   elevatorLeft.set(liftSpeed);
-  /*if ((Math.abs(liftSpeed) > 0.05) && ((liftSpeed > 0 && currentpos < TOP_LIMIT) || (liftSpeed < 0 && currentpos > BOTTOM_LIMIT))){
+  /*if((liftSpeed > 0 && currentpos < TOP_LIMIT) || (liftSpeed < 0 && currentpos > BOTTOM_LIMIT)){
+    goAhead = true;
+  }
+  */
+  if ((Math.abs(liftSpeed) > 0.05)){
       elevatorLeft.set(liftSpeed);
-    } else {
-     elevatorLeft.set(0);
-    }
-    */
+  } else {
+    elevatorLeft.set(0);
+  }
 
   System.out.println("Lift speed: " + liftSpeed);
   System.out.println("Encoder Top:" + TOP_LIMIT);

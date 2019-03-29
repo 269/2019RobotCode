@@ -27,6 +27,9 @@ public class visiontracking_subsystem extends Subsystem {
   WPI_TalonSRX rearLeftMotor = null;
   MecanumDrive mecDrive = null;
   double xpos = Robot.targetValue.getDouble(0.0);
+  if(xpos > 500 || xpos < 0){
+    xpos = 410
+  }
   double tolerance = 3.0;
 
   public void visionTracking_subsystem(){

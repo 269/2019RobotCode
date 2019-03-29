@@ -26,13 +26,18 @@ public class frontIntakeRotateCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double rotateSpeed = -0.85 *Robot.m_oi.intakeController.getRawAxis(RobotMap.RIGHT_JOYSTICK_Y);
+    double rotateSpeed = -0.6 *Robot.m_oi.intakeController.getRawAxis(RobotMap.RIGHT_JOYSTICK_Y);
 
-    if(rotateSpeed >= -0.1 && rotateSpeed <= 0.2){
-      rotateSpeed = 0.15;
+    if(Robot.m_oi.leftBumbper1.get()){
+        rotateSpeed = 0.15;
+        Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
     }
-    
-  Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
+    if(Robot.m_oi.rightBumbper1.get()){
+      rotateSpeed = 0.105;
+      Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
+    }else{
+      Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
