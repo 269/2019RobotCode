@@ -28,6 +28,12 @@ public class frontIntakeRotateCommand extends Command {
   protected void execute() {
     double rotateSpeed = -0.6 *Robot.m_oi.intakeController.getRawAxis(RobotMap.RIGHT_JOYSTICK_Y);
 
+    int encoder = Robot.frontIntakeRotation.getEncoder();
+
+    if(encoder < -1513) {
+      rotateSpeed = rotateSpeed + 0.15;
+      Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
+    }
     if(Robot.m_oi.leftBumbper1.get()){
         rotateSpeed = 0.15;
         Robot.frontIntakeRotation.motorSpeed(rotateSpeed);

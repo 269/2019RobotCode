@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.frontIntakeRotateCommand;
 
@@ -19,11 +20,12 @@ public class frontIntakeRotation_subsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public WPI_TalonSRX frontIntakeRotate = null;
+  public int encoderStart = 0;
 
   public frontIntakeRotation_subsystem() {
 
   frontIntakeRotate = new WPI_TalonSRX(RobotMap.FRONT_INTAKE_ROTATE);
-
+  encoderStart = getEncoder();
   }
   double tolerance = 0.05;
   boolean upperLimit = false, lowerLimit = false;
@@ -45,6 +47,17 @@ public class frontIntakeRotation_subsystem extends Subsystem {
     if (RobotMap.DEBUG) {
     System.out.println("rotation: " + motorSpeed);
     }
+  }
+
+  public int getEncoder() {
+    int encoder = frontIntakeRotate.getSelectedSensorPosition();
+    if(encoderStart <= 0){
+      encoder = encoder + encoderStart;
+    }else{
+      encoder = encoder - encoderStart;
+    }
+    SmartDashboard.putNumber("Front Intake Rotation Encoder", encoder);
+    return encoder;
   }
 
 

@@ -30,12 +30,16 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
   @Override
   protected void execute() {
     double liftSpeed = - Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController);
+    
+    int encoder = Robot.elevator_subsystem.getEncoder();
 
     if (liftSpeed > JOYSTICK_THRESHOLD || liftSpeed < -JOYSTICK_THRESHOLD) {
       //elevatorPosition = "M";
       SmartDashboard.putString("elevatorTargetPosition", "M");
       if (liftSpeed < 0){
-        liftSpeed = 0.5 * liftSpeed;
+        liftSpeed = 0.3 * liftSpeed;
+     } else {
+      liftSpeed = 0.5 * liftSpeed;
      }
      Robot.elevator_subsystem.move(liftSpeed);
     }

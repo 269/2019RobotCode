@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.driveWithJoysticks_command;
@@ -66,5 +67,7 @@ public class driveTrain_subsystem extends Subsystem {
     else{
       mecDrive.driveCartesian(xspeed, yspeed, -zspeed, -Robot.navx.getFusedHeading());
     }
+    SmartDashboard.putBoolean("Orientation", !normDrive);
+
   }
 }

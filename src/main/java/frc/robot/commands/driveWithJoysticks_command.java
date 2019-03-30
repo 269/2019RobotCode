@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
@@ -103,7 +104,8 @@ public driveWithJoysticks_command() {
         if (RobotMap.DEBUG) {
         System.out.println("Gear: " + gear);
         }
-        }
+       }
+       SmartDashboard.putNumber("gear", gear );
       Robot.driveTrain_subsystem.drive(Y_speed, X_speed, Z_rotatingSpeed);
       if (RobotMap.DEBUG) {
       System.out.println("x Speed: " + X_speed + "\nY Speed: " + Y_speed + "\n Z Speed: " + Z_rotatingSpeed);

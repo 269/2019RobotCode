@@ -40,6 +40,7 @@ public class elevator_subsystem extends Subsystem {
   public final double BOTTOM_LIMIT = 0;
   public final double CARGO_PICKUP = 12;
   public final double HATCH_PICKUP = 3;
+  public int encoderStart = 0;
   //public DigitalInput upperLimitSwitch;
   //public DigitalInput lowerLimitSwitch;
 
@@ -47,6 +48,7 @@ public elevator_subsystem(){
   elevatorRight = new WPI_TalonSRX(RobotMap.RIGHT_ELEVATOR);
   elevatorLeft = new WPI_TalonSRX(RobotMap.LEFT_ELEVATOR);
   elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODERA, RobotMap.ELEVATOR_ENCODERB);
+  encoderStart = getEncoder();
  // upperLimitSwitch = new DigitalInput(RobotMap.UPPERLIMITSWITCH);
  // upperLimitSwitch = new DigitalInput(RobotMap.LOWERLIMITSWITCH);
 
@@ -151,6 +153,16 @@ public String getClosestPosition(){
       closestPos = "BOT";
     }
     return closestPos;
+}
+public int getEncoder() {
+  int encoder = elevatorLeft.getSelectedSensorPosition();
+  if(encoderStart <= 0){
+    encoder = encoder + encoderStart;
+  }else{
+    encoder = encoder - encoderStart;
+  }
+  SmartDashboard.putNumber("Elevator Encoder", encoder);
+  return encoder;
 }
 /**
  * 
