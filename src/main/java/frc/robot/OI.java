@@ -54,16 +54,16 @@ public class OI {
 
   public void bind() {
     //yButton.whenPressed(new RotateGyro(0.65, -90));  
-    upButton.whenPressed(new turnToAngle(0.35, 0));
-    rightButton.whenPressed(new turnToAngle(0.35, 90));
-    downButton.whenPressed(new turnToAngle(0.35, 180));
-    leftButton.whenPressed(new turnToAngle(0.35, 270));
+    //upButton.whenPressed(new turnToAngle(0.35, 0));
+    //rightButton.whenPressed(new turnToAngle(0.35, 90));
+    //downButton.whenPressed(new turnToAngle(0.35, 180));
+    //leftButton.whenPressed(new turnToAngle(0.35, 270));
 
     //elevator preset positions
-    upButton1.whenPressed(new elevatorPIDHatchPos("up"));
-    downButton1.whenPressed(new elevatorPIDHatchPos("down"));
-    rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
-    leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
+    //upButton1.whenPressed(new elevatorPIDHatchPos("up"));
+    //downButton1.whenPressed(new elevatorPIDHatchPos("down"));
+    //rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
+    //leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
 
   }
 

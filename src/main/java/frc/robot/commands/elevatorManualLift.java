@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 //Command for Running Elevator commands in subsys
 
@@ -41,7 +42,9 @@ public class elevatorManualLift extends Command { // 6.5 off the ground 2'4" fro
     else{
       Robot.elevator_subsystem.move(0);
     }
+    if (RobotMap.DEBUG) {
     System.out.println("LiftSpeed" + liftSpeed);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

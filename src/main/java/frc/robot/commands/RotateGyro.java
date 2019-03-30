@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class RotateGyro extends Command {
 
@@ -39,7 +40,9 @@ public class RotateGyro extends Command {
   @Override
   protected void initialize() { //here is an error somewhere
     startingYaw = Robot.navx.getFusedHeading();
+    if (RobotMap.DEBUG) {
     System.out.println("Starting Heading: " + startingYaw);
+    }
      }
 
   // Called repeatedly when this Command is scheduled to run
@@ -107,8 +110,9 @@ public class RotateGyro extends Command {
     else if(turnCW == false) { // if the robot is turning counterclockwise
       Robot.driveTrain_subsystem.drive( 0 ,0 , -speed );
     }
-      
+    if (RobotMap.DEBUG) {
     System.out.println("speed : " + speed );
+    }
     //currentYaw = Robot.navx.getFusedHeading();
     //System.out.println("current Yaw : " + currentYaw);
     //System.out.println("Fused heading: " + Robot.navx.getFusedHeading());

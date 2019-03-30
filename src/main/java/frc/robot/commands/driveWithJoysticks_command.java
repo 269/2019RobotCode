@@ -76,36 +76,38 @@ public driveWithJoysticks_command() {
     }
   }
     if(gear == 0){
-
-    System.out.println("Gear: " + gear);
+      if (RobotMap.DEBUG) {
+        System.out.println("Gear: " + gear);
+      }
     }
     if(gear == 1){
     X_speed = X_speed*0.75;
     Y_speed = Y_speed*0.75;
     Z_rotatingSpeed = Z_rotatingSpeed*0.75;
-
-    System.out.println("Gear: " + gear);
-
+    if (RobotMap.DEBUG) {
+      System.out.println("Gear: " + gear);
+    }
     }
     if(gear == 2){
       X_speed = X_speed*0.5;
       Y_speed = Y_speed*0.5;
       Z_rotatingSpeed = Z_rotatingSpeed*0.5;
-
+      if (RobotMap.DEBUG) {
       System.out.println("Gear: " + gear);
-
+      }
       }
       if(gear == 3){
         X_speed = X_speed*0.25;
         Y_speed = Y_speed*0.25;
         Z_rotatingSpeed = Z_rotatingSpeed*0.25;
-  
+        if (RobotMap.DEBUG) {
         System.out.println("Gear: " + gear);
-  
+        }
         }
       Robot.driveTrain_subsystem.drive(Y_speed, X_speed, Z_rotatingSpeed);
+      if (RobotMap.DEBUG) {
       System.out.println("x Speed: " + X_speed + "\nY Speed: " + Y_speed + "\n Z Speed: " + Z_rotatingSpeed);
-
+      }
       if (Robot.m_oi.xButton.get() == true) {
         Robot.navx.reset();
     }

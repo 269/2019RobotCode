@@ -42,7 +42,9 @@ public class frontIntakeRotation_subsystem extends Subsystem {
     else{
       frontIntakeRotate.set(motorSpeed);
     }
+    if (RobotMap.DEBUG) {
     System.out.println("rotation: " + motorSpeed);
+    }
   }
 
 

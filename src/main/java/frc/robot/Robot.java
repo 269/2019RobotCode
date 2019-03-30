@@ -59,7 +59,9 @@ public class Robot extends TimedRobot {
     //initalize navx over roborio MXP SPI port
     try{
       navx = new AHRS(SPI.Port.kMXP);
+      if (RobotMap.DEBUG) {
       System.out.println("it's trying its best fam");
+      }
       errStatus = false;
     } catch (RuntimeException ex ) {
         System.out.println("Error instantiating navX-MXP:  " + ex.getMessage());
@@ -81,13 +83,13 @@ public class Robot extends TimedRobot {
     //calling our subystems to run
     
     driveTrain_subsystem = new driveTrain_subsystem();
-    rearIntakeRollers_subsystem = new rearIntakeRollers_subsystem();
-    rearIntakeRotation = new rearIntakeRotation_subsystem();
+    //rearIntakeRollers_subsystem = new rearIntakeRollers_subsystem();
+    //rearIntakeRotation = new rearIntakeRotation_subsystem();
     elevator_subsystem = new elevator_subsystem();
     frontIntake = new frontIntake_subsystem();
     frontIntakeRotation = new frontIntakeRotation_subsystem();
     vacuum = new Vacuum_subsystem();
-    leadScrews = new leadScrew_subsystem();
+    //leadScrews = new leadScrew_subsystem();
     //visiontracking_subsystem = new visiontracking_subsystem();
     m_oi = new OI();
 
@@ -100,9 +102,10 @@ public class Robot extends TimedRobot {
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("pixieCamera");
     targetValue = table.getEntry("targetXPOS"); //returns the x position on the screen of where the middle of the target is
-    System.out.println("targetvalueXPOS " + targetValue);
-
-    CameraServer.getInstance().startAutomaticCapture();
+    if (RobotMap.DEBUG) {
+      System.out.println("targetvalueXPOS " + targetValue);
+    }
+   // CameraServer.getInstance().startAutomaticCapture();
 
     targetSize = table.getEntry("targetSIZE");
     //System.out.println("targetvalueXPOS " + targetValue.getDouble(0.0));
@@ -203,14 +206,17 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    
+    if (RobotMap.DEBUG) {
     if(DEBUG){
       // System.out.println("Compass head : " + navx.getCompassHeading());
       System.out.println("Fused Heading : " + navx.getFusedHeading());
       //System.out.println("Yaw : " + getFullYaw());
       //System.out.println("Target Value: " + targetValue);
     }
+    if (RobotMap.DEBUG) {
     System.out.println("targetvalueXPOS " + targetValue.getDouble(0.0));
+    }
+  }
   }
 
   /**

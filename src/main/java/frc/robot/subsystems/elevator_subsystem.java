@@ -93,15 +93,16 @@ public void move(double liftSpeed){//moving the elevator up or down depending on
   } else {
     elevatorLeft.set(0);
   }
-
+  if (RobotMap.DEBUG) {
   System.out.println("Lift speed: " + liftSpeed);
   System.out.println("Encoder Top:" + TOP_LIMIT);
   System.out.println("Encoder Bot:" + BOTTOM_LIMIT);
   System.out.println("current pos:" + currentpos);
-
+  }
   SmartDashboard.putString("elevatorClosestPosition", "M-" + getClosestPosition());
+  if (RobotMap.DEBUG) {
   //System.out.println("Elevator pos: " + elevatorLeft.getSelectedSensorPosition());
-
+  }
 }
 
 /**
