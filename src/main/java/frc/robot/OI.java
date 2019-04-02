@@ -6,9 +6,12 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-import frc.robot.commands.elevatorPIDCargoPos;
-import frc.robot.commands.elevatorPIDHatchPos;
-import frc.robot.commands.turnToAngle;
+
+import frc.robot.commands.cargoPU;
+//import frc.robot.commands.elevatorPIDCargoPos;
+//import frc.robot.commands.elevatorPIDHatchPos;
+import frc.robot.commands.hatchPanelPU;
+//import frc.robot.commands.turnToAngle;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
@@ -64,6 +67,8 @@ public class OI {
     //downButton1.whenPressed(new elevatorPIDHatchPos("down"));
     //rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
     //leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
+    upButton1.whenPressed(new hatchPanelPU());
+    downButton1.whenPressed(new cargoPU());
 
   }
 
@@ -99,6 +104,14 @@ public class OI {
    */
   public double getRightTriggerAxis(Joystick controller){     //gets the right triggers corrected axis (inverted)
     return -1*controller.getRawAxis(RobotMap.RIGHT_TRIGGER);
+  }
+  /**
+   * 
+   * @param controller the USB controller you want 
+   * @return  returns the y axis left joystick (-1.0 - 1.0)
+   */
+  public double getRightJoystickY(Joystick controller){       //gets the left joysticks corrected y axis
+    return controller.getRawAxis(RobotMap.RIGHT_JOYSTICK_Y);
   }
 
   //creating controllers NOTE: in wpilib joystick = controller
