@@ -11,10 +11,12 @@ import frc.robot.commands.cargoPU;
 //import frc.robot.commands.elevatorPIDCargoPos;
 //import frc.robot.commands.elevatorPIDHatchPos;
 import frc.robot.commands.hatchPanelPU;
+import frc.robot.commands.test;
 //import frc.robot.commands.turnToAngle;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.commands.testGroup;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -68,7 +70,8 @@ public class OI {
     //rightButton1.whenPressed(new elevatorPIDCargoPos("up"));
     //leftButton1.whenPressed(new elevatorPIDCargoPos("down"));
     upButton1.whenPressed(new hatchPanelPU());
-    downButton1.whenPressed(new cargoPU());
+   // downButton1.whenPressed(new cargoPU());
+    backButton.whenPressed(new test());
 
   }
 
@@ -144,7 +147,8 @@ public class OI {
   public POVButton downButton = new POVButton(driverController, 180, RobotMap.DOWN_BUTTON);
   public POVButton leftButton = new POVButton(driverController, 270, RobotMap.LEFT_BUTTON);
 
-  public POVButton upButton1 = new POVButton(intakeController, 0, RobotMap.UP_BUTTON);
+
+   public POVButton upButton1 = new POVButton(intakeController, 0, RobotMap.UP_BUTTON);
   public POVButton rightButton1 = new POVButton(intakeController, 90, RobotMap.RIGHT_BUTTON);
   public POVButton downButton1 = new POVButton(intakeController, 180, RobotMap.DOWN_BUTTON);
   public POVButton leftButton1 = new POVButton(intakeController, 270, RobotMap.LEFT_BUTTON);

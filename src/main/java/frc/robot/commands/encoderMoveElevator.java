@@ -38,11 +38,11 @@ public class encoderMoveElevator extends Command {
   @Override
   protected void execute() {
     int currentValue = Robot.elevator_subsystem.getEncoder();
-
-    if(currentValue < wantedValue - tolerance){ //going up
+//elevator encoder is inverted (goes positive to negative)
+    if(currentValue > wantedValue + tolerance){ //going up
       Robot.elevator_subsystem.move(UPSPEED);
     }
-    else if(currentValue > wantedValue + tolerance){ //going down
+    else if(currentValue < wantedValue - tolerance){ //going down
       Robot.elevator_subsystem.move(DOWNSPEED);
     }
     else{ //stop
@@ -54,7 +54,8 @@ public class encoderMoveElevator extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController) != 0.0 || done == true){
+    System.out.println("Ran encoderMoveElevator");
+    if((Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController) < -0.15 || Robot.m_oi.getLeftJoystickY(Robot.m_oi.intakeController) > 0.15) || done == true){
       return true;
     }else{
       return false;

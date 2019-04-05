@@ -34,7 +34,7 @@ public class VacuumButtons extends Command {
   protected void execute() {
 
     //toggle the vacuum on and off on button release
-    /*  buttonPressed = Robot.m_oi.xButton1.get();
+     buttonPressed = Robot.m_oi.xButton1.get();
       if (buttonPressed && previouslyReleased) { 
         active = !active;
         previouslyReleased = false;
@@ -48,7 +48,6 @@ public class VacuumButtons extends Command {
       else{
         Robot.vacuum.vacuumSucktion(false); 
       }
-      */
     }
   
 

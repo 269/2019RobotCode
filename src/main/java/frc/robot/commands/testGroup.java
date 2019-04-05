@@ -8,13 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.Robot;
 
-public class hatchPanelPU extends CommandGroup {
+public class testGroup extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public hatchPanelPU() {
+  public testGroup() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -31,11 +30,7 @@ public class hatchPanelPU extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    addSequential(new encoderMoveIntake(-1117), 3.5);
-    addSequential(new encoderMoveElevator(-2661), 3.5);
-    addSequential(new encoderMoveIntake(-1606), 4);
-    //addSequential(new VacuumButtons, timeout);
-
-    //Robot.m_oi.upButton1.cancelWhenPressed(new hatchPanelPU());
+    System.out.println("in test group");
+    addSequential(new test());
   }
 }

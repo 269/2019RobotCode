@@ -14,7 +14,7 @@ public class encoderMoveIntake extends Command {
 
   public int wantedValue;
   public int tolerance = 300;
-  public final double SETSPEED = 0.2;
+  public final double SETSPEED = 0.25;
   public double speed;
   public boolean done = false;
 
@@ -43,13 +43,13 @@ public class encoderMoveIntake extends Command {
       speed = SETSPEED;
     }
     else if(currentValue > wantedValue + tolerance){ //going down
-      speed = -SETSPEED;
+      speed = -0.3;
     }
     else{ //stop
       speed = 0.0;
       done = true;
     }
-    if(currentValue < -1513) {
+    if(currentValue < -900) {
       speed = speed + 0.15;
     }
     Robot.frontIntakeRotation.motorSpeed(speed);
@@ -58,7 +58,8 @@ public class encoderMoveIntake extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.m_oi.getRightJoystickY(Robot.m_oi.intakeController) != 0.0 || Robot.m_oi.leftBumbper1.get() == true || Robot.m_oi.rightBumbper1.get() == true || done == true){
+    System.out.println("Ran encoderMoveIntake");
+    if((Robot.m_oi.getRightJoystickY(Robot.m_oi.intakeController) > 0.15 || Robot.m_oi.getRightJoystickY(Robot.m_oi.intakeController) < -0.15) || Robot.m_oi.leftBumbper1.get() == true || Robot.m_oi.rightBumbper1.get() == true || done == true){
       return true;
     }else{
       return false;

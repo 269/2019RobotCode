@@ -30,7 +30,7 @@ public class frontIntakeRotateCommand extends Command {
 
     int encoder = Robot.frontIntakeRotation.getEncoder();
 
-    if(encoder < -1513) {
+    if(encoder < -900) {
       rotateSpeed = rotateSpeed + 0.15;
       Robot.frontIntakeRotation.motorSpeed(rotateSpeed);
     }

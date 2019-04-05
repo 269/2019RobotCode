@@ -62,10 +62,10 @@ public class driveTrain_subsystem extends Subsystem {
         released = true;
     }
     if(normDrive){
-      mecDrive.driveCartesian(xspeed, yspeed, -zspeed, -0.0);
+      mecDrive.driveCartesian(xspeed, yspeed, -zspeed, -Robot.navx.getFusedHeading());
     }
     else{
-      mecDrive.driveCartesian(xspeed, yspeed, -zspeed, -Robot.navx.getFusedHeading());
+      mecDrive.driveCartesian(xspeed, yspeed, -zspeed, -0.0);
     }
     SmartDashboard.putBoolean("Orientation", !normDrive);
 
